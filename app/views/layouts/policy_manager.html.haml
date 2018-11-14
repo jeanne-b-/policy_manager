@@ -1,0 +1,31 @@
+!!! 5
+%html{class: "#{yield(:html_class)}"}(lang="en")
+  %head
+    = cache ['generic', 'head', app_name] do
+      %meta(charset="utf-8")
+      %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+      %meta(name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0")
+      %meta{:content => "yes", :name => "mobile-web-app-capable"}
+      %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
+      %meta{:content => "translucent-black", :name => "apple-mobile-web-app-status-bar-style"}
+      %meta{:content => "Intranet 42", :name => "apple-mobile-web-app-title"}
+      %meta{:content => "on", "http-equiv" => "cleartype"}
+      %link{:rel => "preconnect", href: "https://cdn.intra.42.fr/"}
+      %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
+      %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
+      /[if lt IE 9]
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = javascript_include_tag "//cdn.ravenjs.com/3.12.1/raven.min.js"
+    :coffee
+      @_current_entity = @current_entity
+      @_entity_type = @entity_type
+      @_environment = "#{Rails.env}"
+      @_git_commit = "#{`git log --format="%H" -n 1` rescue nil}"
+    %title= page_title([app_name, params[:controller], params[:action]], default: "#{app_name.capitalize} - Intra")
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+
+    %body.white-background
+      = yield
+
