@@ -22,6 +22,12 @@ Or install it yourself as:
 rails g policy_manager:install
 ```
 
+## Add routes to your app
+```ruby
+# config/routes.rb
+mount PolicyManager::Engine => "/policies"
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
