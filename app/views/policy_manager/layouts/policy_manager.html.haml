@@ -17,11 +17,6 @@
     %title= page_title(['Intra', app_name], {default: "#{app_name.capitalize} - Intra", resource: (resource rescue nil) })
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
-    %body{style: 'background: #fff;'}
-      .jumbotron.py-3
-        .container.flex.justify-content-center
-          %h4.font-weight-bold.mx-4= link_to PolicyManager::Term.model_name.human.pluralize, terms_path
-          %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human.pluralize, portability_requests_path
+    %body
       = yield
     = javascript_include_tag "application"
-    = javascript_include_tag "policy_manager/application", debug: false

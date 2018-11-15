@@ -1,0 +1,8 @@
+.container.bg-white
+  %h3= resource_class.model_name.human
+  = simple_form_for resource do |f|
+    = f.input :title
+    = f.input :description
+    = f.input :state
+    = f.input :locale, as: :select, collection: I18n.available_locales
+    = f.submit

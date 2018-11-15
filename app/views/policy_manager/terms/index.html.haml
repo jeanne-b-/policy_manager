@@ -1,2 +1,12 @@
-.container.bg-white
-  %h3 Terms
+.container
+  %h2.font-weight-bold
+    = resource_class.model_name.human.pluralize
+    - if can? :new, PolicyManager::Term
+      .float-right
+        = link_to 'new', new_term_path, class: 'btn btn-primary'
+  - @terms.each do |t|
+    %h3
+      = link_to t.title, term_path(t)
+    %p.lead
+      = t.description.truncate(100)
+
