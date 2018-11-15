@@ -1,4 +1,5 @@
 PolicyManager::Engine.routes.draw do
-  resource :terms, only: :index  
+  resources :terms
+  resources :portability_requests
   root 'terms#index'
 end
