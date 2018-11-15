@@ -12,7 +12,7 @@ module PolicyManager
       end
 
       def copy_migrations
-        migration_template "create_terms.rb", "db/migrate/create_terms.rb"
+        migration_template "create_policy_manager_terms.rb", "db/migrate/create_policy_manager_terms.rb"
       end
     end
   end
