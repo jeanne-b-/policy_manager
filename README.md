@@ -66,6 +66,20 @@ $ rails generate policy_manager:portability_serializer message
 Will generate a serializer for the class Message, with all its attributes and its `belongs_to` and `has_many` relations.
 Don't forget to review it, and make necessary changes.
 
+### Configure your users
+
+Add the concern in the user class, for exemple in app/models/user.rb:
+
+```ruby
+class User < ApplicationRecord
+  #...
+  include PolicyManager::Concerns::PoliciesResource
+  #...
+end
+```
+
+This adds the approriate relationships to your users.
+
 ## Add routes to your app
 ```ruby
 # config/routes.rb
