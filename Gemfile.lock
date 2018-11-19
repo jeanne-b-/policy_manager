@@ -12,10 +12,13 @@ PATH
   remote: .
   specs:
     policy_manager (0.1.0)
+      aasm
 
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.0.1)
+      concurrent-ruby (~> 1.0)
     actioncable (5.0.0)
       actionpack (= 5.0.0)
       nio4r (~> 1.2)
@@ -131,6 +134,7 @@ GEM
       railties (>= 4.2.0, < 5.3)
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
+    rubyzip (1.2.2)
     sexp_processor (4.11.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -152,6 +156,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bundler (~> 1.16)
   carrierwave (= 0.10.0)
   haml-rails (= 0.9.0)
@@ -159,6 +164,7 @@ DEPENDENCIES
   policy_manager!
   rails (= 5.0.0)
   rake (~> 10.0)
+  rubyzip
 
 BUNDLED WITH
    1.16.6

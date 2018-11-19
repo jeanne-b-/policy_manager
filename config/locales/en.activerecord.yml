@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      policy_manager/portability_request: portability request
+    attributes:
+      policy_manager/portability_request:
+        state: state
+        state/waiting_for_approval: Your request will be approved by an admin.
+        state/pending: Your request has been approved, you will be notified when your data is ready.
+        state/running: Your data is being generated.
+        state/denied: Your request has been denied. 
+        state/canceled: You have canceled your request. 
+        state/done: Done.

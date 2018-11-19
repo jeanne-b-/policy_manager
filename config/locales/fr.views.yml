@@ -1,0 +1,5 @@
+fr:
+  policy_manager:
+    portability_request:
+      index:
+        new: Faire une demande de portabilité

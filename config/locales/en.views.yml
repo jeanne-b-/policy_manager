@@ -1,0 +1,11 @@
+en:
+  policy_manager:
+    portability_requests:
+      index:
+        download: download my data
+        new: make a portablity request
+        cancel: cancel
+      admin:
+        approve: approve
+        deny: deny
+

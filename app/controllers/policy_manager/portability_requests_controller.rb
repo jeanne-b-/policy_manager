@@ -4,8 +4,14 @@ module PolicyManager
     inherit_resources
     authorize_resource
 
+    custom_actions resource: [:cancel, :deny, :approve], collection: :admin
+
     def collection
-      @portability_requests = PortabilityRequest.where(owner: User.current_user)
+      if params[:action] == "admin"
+        @portability_requests = PolicyManager::PortabilityRequest.waiting_for_approval
+      else
+        @portability_requests = PolicyManager::PortabilityRequest.where(owner: User.current_user).order(created_at: :desc)
+      end
     end
 
     def create
@@ -20,7 +26,22 @@ module PolicyManager
     end
 
     def begin_of_association_chain
-      User.current_user
+      User.current_user if params[:action] == 'create'
+    end
+
+    def approve
+      resource.approve!
+      redirect_to collection_url
+    end
+
+    def cancel
+      resource.cancel!
+      redirect_to collection_url
+    end
+
+    def deny
+      resource.deny!
+      redirect_to collection_url
     end
   end
 end

@@ -1,0 +1,13 @@
+fr:
+  activerecord:
+    models:
+      policy_manager/portability_request: demande de portabilité
+    attributes:
+      policy_manager/portability_request:
+        state: état
+        state/waiting_for_approval: Votre demande doit être approuvée.
+        state/pending: Votre demande a été approuvée, vos données vont être générée.
+        state/running: Vos données sont en train d'être générées.
+        state/denied: Votre demande a été refusée. 
+        state/canceled: Vous avez annulée votre demande.
+        state/done: Fini.

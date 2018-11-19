@@ -1,11 +1,22 @@
 .container
   %h2.font-weight-bold
     = resource_class.model_name.human.pluralize
+    - if can? :admin, resource_class
+      = link_to :admin, admin_portability_requests_path
   %ul.list-group
     - if can? :create, pr = PolicyManager::PortabilityRequest.new(owner: User.current_user)
-      %li.list-group-item
-        = button_to 'new', portability_requests_path
+      = button_to t('.new'), portability_requests_path, class: 'btn btn-primary'
     - @portability_requests.each do |p|
-      %li.list-group-item
-        = link_to p.id, p.attachement_url
+      %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
+        .col-sm-8
+          %h4
+            = resource_class.model_name.human
+            = l(p.created_at)
+          %i= p.aasm.human_state
+        .col-sm-4
+          .btn-group.float-right
+            - if p.try(:attachement_url)
+              = link_to t('.download'), p.attachement_url, class: 'btn btn-default'
+            - if can? :cancel, p
+              = link_to t('.cancel'), cancel_portability_request_path(p), class: 'btn btn-danger', method: :post
 
