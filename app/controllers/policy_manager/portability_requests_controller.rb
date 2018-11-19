@@ -4,13 +4,23 @@ module PolicyManager
     inherit_resources
     authorize_resource
 
-    def index
-      load '../policy_manager/lib/policy_manager/registery.rb'
-      render json: Registery.new.data_dump_for(User.current_user)
+    def collection
+      @portability_requests = PortabilityRequest.where(owner: User.current_user)
+    end
+
+    def create
+      create! do |s, f|
+        s.html { redirect_to collection_url }
+        f.html { redirect_to collection_url }
+      end
     end
 
     def permitted_params
-      params.permit(portability_request: [:user_id])
+      params.permit(portability_request: [:owner_id, :owner_type])
+    end
+
+    def begin_of_association_chain
+      User.current_user
     end
   end
 end
