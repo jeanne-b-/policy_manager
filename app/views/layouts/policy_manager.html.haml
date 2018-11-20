@@ -1,7 +1,7 @@
 !!! 5
 %html(lang="en")
   %head
-    = cache ['generic', 'head', app_name] do
+    = cache ['generic', 'head', 'policies'] do
       %meta(charset="utf-8")
       %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
       %meta(name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0")
@@ -14,7 +14,6 @@
       %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
       %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
       = javascript_include_tag "//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
-    %title= page_title(['Intra', app_name], {default: "#{app_name.capitalize} - Intra", resource: (resource rescue nil) })
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
     %body{style: 'background: #fff;'}
