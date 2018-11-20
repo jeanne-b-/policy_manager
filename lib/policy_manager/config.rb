@@ -1,9 +1,8 @@
 module PolicyManager
   class Config
-    mattr_accessor :is_admin_method, :user_resource, :registery
+    mattr_accessor :is_admin_method, :user_resource, :registery, :skip_portability_request_approval, :other_services
 
     def self.setup
-      @@is_admin_method = nil
       yield self
       self
       @@is_admin_method ||= -> (user) { user.is_admin? }

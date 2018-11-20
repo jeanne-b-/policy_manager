@@ -8,6 +8,8 @@ module PolicyManager
 
     mount_uploader :attachement, AttachementUploader
 
+    after_create :change_state_if_needed
+
     aasm column: :state do
       state :waiting_for_approval, :initial => true
       state :pending
@@ -37,6 +39,10 @@ module PolicyManager
       end
     end
 
+    def change_state_if_needed
+      self.approve! if Config.skip_portability_request_approval
+    end
+
     def generate_json
       perform_async
     end
@@ -48,7 +54,6 @@ module PolicyManager
       file_name = File.join(file_path, "#{self.id.to_s}.json")
       file = File.new(file_name, 'w')
 
-      sleep(100)
       user_data = Registery.new.data_dump_for(owner).to_json
 
       begin
