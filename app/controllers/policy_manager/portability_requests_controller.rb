@@ -1,5 +1,5 @@
 module PolicyManager
-  class PortabilityRequestsController < ApplicationController
+  class PortabilityRequestsController < PolicyManager::ApplicationController
     layout 'policy_manager'
     inherit_resources
     authorize_resource
@@ -10,7 +10,7 @@ module PolicyManager
       if params[:action] == "admin"
         @portability_requests = PolicyManager::PortabilityRequest.waiting_for_approval
       else
-        @portability_requests = PolicyManager::PortabilityRequest.where(owner: User.current_user).order(created_at: :desc)
+        @portability_requests = PolicyManager::PortabilityRequest.where(owner: @current_user).order(created_at: :desc)
       end
     end
 
@@ -26,7 +26,7 @@ module PolicyManager
     end
 
     def begin_of_association_chain
-      User.current_user if params[:action] == 'create'
+      @current_user if params[:action] == 'create'
     end
 
     def approve

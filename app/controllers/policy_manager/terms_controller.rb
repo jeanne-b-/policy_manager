@@ -1,5 +1,5 @@
 module PolicyManager
-  class TermsController < ApplicationController
+  class TermsController < PolicyManager::ApplicationController
     layout 'policy_manager'
     inherit_resources
     authorize_resource
