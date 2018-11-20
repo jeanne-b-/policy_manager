@@ -1,5 +1,14 @@
 fr:
+  approve: approuver
+  deny: refuser
+  cancel: annuler
   policy_manager:
     portability_request:
       index:
+        download: télécharger mes données
         new: Faire une demande de portabilité
+        cancel: annuler
+        confirm: confirmer
+        other_services: Si vous le souhaitez, nous pouvons faire une demande de portabilité sur nos autres services
+        request_will_be_approved: Avant de vous envoyer vos données, un administrateur doit valider votre demande
+        modal_content: Nous vons enverrons vos données sous le format JSON par mail.
