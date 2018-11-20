@@ -5,6 +5,10 @@ en:
         download: download my data
         new: make a portablity request
         cancel: cancel
+        confirm: confirm
+        other_services: 'If you wish, we can also make a portability request on other services we own for you'
+        request_will_be_approved: Before sending you your data, an admin will have to approve your request.
+        modal_content: You are about to request your data, we will send you a JSON dump via email.
       admin:
         approve: approve
         deny: deny
