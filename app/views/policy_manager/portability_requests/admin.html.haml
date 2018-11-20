@@ -12,16 +12,15 @@
           - classes = 'text-warning'
         - else
           - classes = 'text-danger'
+        %b= p.owner.try(:email) || p.owner.try(:login) || p.owner.try(:id)
         %b{class: classes}
           = time_ago_in_words(p.created_at)
           ago
-        by
-        %b= p.owner.email
-        .btn-group.float-right
+        .btn-group.float-right.pull-right
           - if can? :cancel, p
-            = link_to :cancel, cancel_portability_request_path(p), class: 'btn btn-danger', method: :post
+            = link_to t('cancel'), cancel_portability_request_path(p), class: 'btn btn-danger', method: :post
           - if can? :approve, p
-            = link_to :approve, approve_portability_request_path(p), class: 'btn btn-success', method: :post
+            = link_to t('approve'), approve_portability_request_path(p), class: 'btn btn-success', method: :post
           - if can? :deny, p
-            = link_to :deny, deny_portability_request_path(p), class: 'btn btn-danger', method: :post
+            = link_to t('deny'), deny_portability_request_path(p), class: 'btn btn-danger', method: :post
 
