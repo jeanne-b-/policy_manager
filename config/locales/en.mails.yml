@@ -4,4 +4,6 @@ en:
       completed:
         subject: Your data portability request is complete
         content: Your data is ready and can be downloaded
-        link: download
+        requested_by_user: You have made a data portability request
+        requested_by_api: You have made a data portability request on own of our services.
+        download_link: download

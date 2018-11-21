@@ -3,5 +3,7 @@ fr:
     mails:
       completed:
         subject: Votre demande de portabilité est complete.
+        requested_by_user: Vous nous avez fait une demande de portabilité.
+        requested_by_api: Vous avez fait une demande de portabilité sur l'un de nos services.
         content: Vos données sont pretes a etre télecharger.
-        link: télecharger
+        download_link: télecharger
