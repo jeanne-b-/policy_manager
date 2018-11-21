@@ -34,7 +34,7 @@ module PolicyManager
         transitions :from => :pending, :to => :running
       end
       
-      event :done do
+      event :done, after: :notify_user do
         transitions :from => :running, :to => :done
       end
     end
@@ -70,6 +70,10 @@ module PolicyManager
       else
         raise UnknownErrorException, "endpoint '#{service}' returned unhandled status code (#{response.code}) with body #{response.body}, aborting."
       end
+    end
+
+    def notify_user
+      PortabilityMailer.completed(self.id).deliver_now
     end
 
     def generate_json

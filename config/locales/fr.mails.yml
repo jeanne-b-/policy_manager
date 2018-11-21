@@ -1,0 +1,7 @@
+fr:
+  policy_manager:
+    mails:
+      completed:
+        subject: Votre demande de portabilité est complete.
+        content: Vos données sont pretes a etre télecharger.
+        link: télecharger

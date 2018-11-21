@@ -1,0 +1,7 @@
+en:
+  policy_manager:
+    mails:
+      completed:
+        subject: Your data portability request is complete
+        content: Your data is ready and can be downloaded
+        link: download
