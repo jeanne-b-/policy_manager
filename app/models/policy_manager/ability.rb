@@ -4,6 +4,7 @@ module PolicyManager
 
     def initialize(user)
       can [:show, :index], Term
+      can [:api_create], PortabilityRequest
       return if user.nil?
       can [:index, :create], PortabilityRequest
       can [:cancel], PortabilityRequest do |p|

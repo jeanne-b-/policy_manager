@@ -10,6 +10,8 @@ gem 'inherited_resources', github: 'lambda2/inherited_resources'
 gem 'carrierwave', '0.10.0'
 gem 'aasm'
 gem 'rubyzip'
+gem 'httparty'
+
 
 
 gemspec

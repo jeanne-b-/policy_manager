@@ -1,6 +1,6 @@
 module PolicyManager
   class Config
-    mattr_accessor :is_admin_method, :user_resource, :registery, :skip_portability_request_approval, :other_services
+    mattr_accessor :is_admin_method, :user_resource, :registery, :skip_portability_request_approval, :other_services, :token, :finder
 
     def self.setup
       yield self

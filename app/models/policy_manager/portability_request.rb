@@ -30,7 +30,7 @@ module PolicyManager
         transitions :from => :waiting_for_approval, :to => :denied
       end
   
-      event :run do
+      event :run, after: :create_on_other_services do
         transitions :from => :pending, :to => :running
       end
       
@@ -41,6 +41,34 @@ module PolicyManager
 
     def change_state_if_needed
       self.approve! if Config.skip_portability_request_approval
+    end
+
+    def create_on_other_services
+      Config.other_services.each do |name, _|
+        call_service(name)
+      end
+    end
+
+    def call_service(service)
+      perform_async(service)
+    end
+
+    def async_call_service(service)
+      response = Config.other_services[service.to_sym].call(owner).response
+      case response.code.to_i
+        when 200..299
+        return response
+      when 404
+        raise NotFoundException, "service '#{service}' was unable to find given user"
+      when 401
+        raise UnauthorizedException, "service '#{service}' returned unauthorized"
+      when 422
+        raise UnprocessableException, "service '#{service}' cannot process params, and returned #{response.body}"
+      when 500..599
+        raise InternalErrorException, "endpoint '#{service}' have an internal server error, and returned #{response.body}"
+      else
+        raise UnknownErrorException, "endpoint '#{service}' returned unhandled status code (#{response.code}) with body #{response.body}, aborting."
+      end
     end
 
     def generate_json
