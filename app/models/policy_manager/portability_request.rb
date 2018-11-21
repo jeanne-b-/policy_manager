@@ -18,19 +18,19 @@ module PolicyManager
       state :denied
       state :canceled
   
-      event :approve, after: :generate_json do
+      event :approve, after_commit: :generate_json do
          transitions :from => :waiting_for_approval, :to => :pending
       end
 
       event :cancel do
-        transitions from: [:waiting_for_approval, :pending], :to => :canceled
+        transitions from: :waiting_for_approval, :to => :canceled
       end
 
       event :deny do
         transitions :from => :waiting_for_approval, :to => :denied
       end
   
-      event :run, after: :create_on_other_services do
+      event :run, after_commit: :create_on_other_services do
         transitions :from => :pending, :to => :running
       end
       
