@@ -1,4 +1,5 @@
 require "aasm"
+require 'zip'
 
 module PolicyManager
   class PortabilityRequest < ApplicationRecord
@@ -92,9 +93,14 @@ module PolicyManager
       begin
         file.flush
         file.write(user_data)
-        self.update(attachement: file)
+        zipfile_name = file_path + "#{Devise.friendly_token}.zip"
+        Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+          zipfile.add("#{self.id.to_s}.json", file)
+        end
+        self.update(attachement: File.open(zipfile_name))
       ensure
         File.delete(file)
+        File.delete(zipfile_name)
       end
       self.done!
     end
