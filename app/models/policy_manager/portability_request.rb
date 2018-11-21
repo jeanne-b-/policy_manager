@@ -44,6 +44,7 @@ module PolicyManager
     end
 
     def create_on_other_services
+      return unless notify_other_services?
       Config.other_services.each do |name, _|
         call_service(name)
       end
