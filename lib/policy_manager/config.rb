@@ -9,6 +9,7 @@ module PolicyManager
       @@user_resource ||= User
       @@from_email ||= 'privacy@42.fr'
       @@user_language ||= -> (user) {:en}
+      @@finder ||= :id
     end
 
     def self.is_admin?(user)

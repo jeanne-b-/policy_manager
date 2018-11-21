@@ -15,9 +15,10 @@ module PolicyManager
     end
 
     def api_create
-      render json: 'unauthorized', status: :unauthorized and return if params[:token] != PolicyManager::Config.token
+      render json: 'unauthorized', status: :unauthorized and return if !params[:hash] or !params[:user]
       finder = PolicyManager::Config.finder rescue :id
-      if params[:user] and @user = PolicyManager::Config.user_resource.find_by([[finder, params[:user]]].to_h)
+      if @user = PolicyManager::Config.user_resource.find_by([[finder, params[:user]]].to_h)
+        render json: 'unauthorized', status: :unauthorized and return unless PolicyManager::PortabilityRequest.encrypted_params(@user.send(finder))[:hash] == params[:hash]
         portability_request = @user.portability_requests.create(requested_by: 'api')
         if portability_request.errors.any?
           render json: portability_request.errors.full_messages.join(', '), status: 422

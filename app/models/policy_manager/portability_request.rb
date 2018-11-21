@@ -55,22 +55,43 @@ module PolicyManager
       perform_async(service)
     end
 
-    def async_call_service(service)
-      response = Config.other_services[service.to_sym].call(owner).response
+    def async_call_service(service_name)
+      service = Config.other_services[service_name.to_sym]
+      if service.respond_to?('[]', :host)
+        response = HTTParty.get(service[:host], query: encrypted_params_for_service(service_name)).response
+      else
+        response = service.call(owner).response
+      end
+
       case response.code.to_i
         when 200..299
         return response
       when 404
-        raise NotFoundException, "service '#{service}' was unable to find given user"
+        raise "service_name '#{service_name}' was unable to find given user"
       when 401
-        raise UnauthorizedException, "service '#{service}' returned unauthorized"
+        raise "service_name '#{service_name}' returned unauthorized"
       when 422
-        raise UnprocessableException, "service '#{service}' cannot process params, and returned #{response.body}"
+        raise "service_name '#{service_name}' cannot process params, and returned #{response.body}"
       when 500..599
-        raise InternalErrorException, "endpoint '#{service}' have an internal server error, and returned #{response.body}"
+        raise "endpoint '#{service_name}' have an internal server error, and returned #{response.body}"
       else
-        raise UnknownErrorException, "endpoint '#{service}' returned unhandled status code (#{response.code}) with body #{response.body}, aborting."
+        raise "endpoint '#{service_name}' returned unhandled status code (#{response.code}) with body #{response.body}, aborting."
       end
+    end
+ 
+    def self.encrypted_params(user_identifier, token = PolicyManager::Config.token)
+      hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha512'), token, user_identifier)
+      {user: user_identifier, hash: hash}
+    end
+   
+    def encrypted_params_for_service(service_name)
+      user_identifier = owner.send(PolicyManager::Config.finder)
+      PortabilityRequest.encrypted_params(user_identifier, Config.other_services[service_name.to_sym][:token])
+    end
+
+    def my_encrypted_params
+      user_identifier = owner.send(PolicyManager::Config.finder)
+      PortabilityRequest.encrypted_params(user_identifier)
     end
 
     def notify_user
