@@ -38,7 +38,7 @@ module PolicyManager
     end
 
     def permitted_params
-      params.permit(portability_request: [:owner_id, :owner_type])
+      params.permit(portability_request: [:notify_other_services])
     end
 
     def begin_of_association_chain
