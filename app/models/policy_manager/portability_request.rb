@@ -10,6 +10,11 @@ module PolicyManager
     mount_uploader :attachement, AttachementUploader
 
     after_create :change_state_if_needed
+    validate :only_one_pending_request, on: :create
+
+    def only_one_pending_request
+      self.errors.add(:owner_id, :not_unique) if owner.portability_requests.where(state: [:waiting_for_approval, :pending, :running]).count > 0
+    end
 
     aasm column: :state do
       state :waiting_for_approval, :initial => true

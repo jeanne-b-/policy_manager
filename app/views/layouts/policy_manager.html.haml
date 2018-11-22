@@ -20,7 +20,14 @@
       .jumbotron.py-3
         .container.flex.justify-content-center
           %h4.font-weight-bold.mx-4= link_to PolicyManager::Term.model_name.human.pluralize, terms_path
-          %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human.pluralize, portability_requests_path
+          %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human.pluralize, portability_requests_path, {class: can?(:index, PolicyManager::PortabilityRequest) ? '' : 'text-muted'}
+      .container
+        - flash.each do |key, v|
+          %div{class: "alert alert-#{key == 'error' ? 'danger' : 'primary'} alert-dismissible fade in show"}
+            = v
+            %button.close{data: {dismiss: 'alert', label: 'close'}}
+              %span{aria: {hidden: true}}
+                &times;
       = yield
     = javascript_include_tag "application"
     = javascript_include_tag "policy_manager/application", debug: false

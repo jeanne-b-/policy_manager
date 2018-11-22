@@ -1,5 +1,11 @@
 en:
   activerecord:
+    errors:
+      models:
+        policy_manager/portability_request:
+          attributes:
+            owner_id:
+              not_unique: You already have a pending request
     models:
       policy_manager/portability_request: portability request
     attributes:

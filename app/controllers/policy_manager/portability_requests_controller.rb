@@ -34,7 +34,7 @@ module PolicyManager
     def create
       create! do |s, f|
         s.html { redirect_to collection_url }
-        f.html { redirect_to collection_url }
+        f.html { redirect_to collection_url, flash: {error: resource.errors.messages.values.join(', ')} }
       end
     end
 
