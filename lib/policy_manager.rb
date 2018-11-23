@@ -1,7 +1,7 @@
 require "policy_manager/version"
-require "generators/install" if defined?(Rails)
-require "generators/serializer" if defined?(Rails)
-require "policy_manager/railtie" if defined?(Rails)
+require "generators/policy_manager/install_generator"
+require "generators/policy_manager/serializer_generator"
+require "policy_manager/railtie"
 require "policy_manager/engine"
 require "policy_manager/registery"
 require "policy_manager/config"

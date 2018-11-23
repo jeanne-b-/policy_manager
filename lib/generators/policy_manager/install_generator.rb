@@ -1,11 +1,10 @@
 require 'rails/generators'
 
 module PolicyManager
-  module Generators
     class InstallGenerator < ::Rails::Generators::Base
       include ::Rails::Generators::Migration
 
-      source_root File.expand_path('../../migrations/', __FILE__)
+      source_root File.expand_path('../../../migrations/', __FILE__)
 
       def self.next_migration_number(path)
         Time.now.utc.strftime("%Y%m%d%H%M%S")
@@ -16,5 +15,4 @@ module PolicyManager
         migration_template "create_policy_manager_portability_requests.rb", "db/migrate/create_policy_manager_portability_requests.rb"
       end
     end
-  end
 end
