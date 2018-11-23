@@ -59,7 +59,7 @@ By default, we use the supplied association and serialize all attributes, but yo
 scale_teams: {finder: -> (user) { ScaleTeam.where(user_id: user.id) }}
 ```
 
-To change the default serialization, you can add a specific serialiazer to your app:
+To change the default serialization, you can add a specific serializer to your app:
 ```
 $ rails generate policy_manager:portability_serializer message
 ```
