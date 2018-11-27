@@ -5,7 +5,7 @@ module PolicyManager
     authorize_resource
 
     def permitted_params
-      params.permit(term: [:title, :description, :state, :locale])
+      params.permit(term: [:title, :content, :state, :locale])
     end
   end
 end
