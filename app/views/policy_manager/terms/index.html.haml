@@ -5,8 +5,13 @@
       .float-right
         = link_to 'new', new_term_path, class: 'btn btn-primary'
   - @terms.each do |t|
-    %h3
-      = link_to t.title, term_path(t)
-    %p.lead
-      = t.content.truncate(100)
+    %ul.list-group-item.row
+      .col-sm-8
+        %h3= link_to t.title, term_path(t)
+        - if t.signed_by? current_user
+          %span.text-success
+            signed on 
+            = l current_user.users_terms.where(term: t).first.signed_at
+        - else
+          Not Signed
 

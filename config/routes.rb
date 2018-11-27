@@ -1,5 +1,8 @@
 PolicyManager::Engine.routes.draw do
-  resources :terms
+  resources :terms do
+    post :sign, on: :member
+  end
+
   resources :portability_requests do
     post :cancel, on: :member
     post :approve, on: :member

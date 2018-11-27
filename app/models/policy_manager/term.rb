@@ -1,5 +1,7 @@
 module PolicyManager
   class Term < ApplicationRecord
+    has_many :users_terms
+
     validates_presence_of :title
     validates_presence_of :content
     validates_presence_of :state
@@ -24,6 +26,10 @@ module PolicyManager
 
     def htmlize_content
       self.update_columns(content_html: self.class.renderer.render(self.content))
+    end
+
+    def signed_by?(user)
+      self.users_terms.where(owner: user).any?
     end
   end
 end
