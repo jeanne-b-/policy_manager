@@ -30,10 +30,12 @@ function init() {
   });
 
   // marked inputs
-  Array.from(document.getElementsByClassName('marked')).forEach(function(elem) {
+  Array.from(document.getElementsByClassName('row marked')).forEach(function(elem) {
     var input;
     var e;
+    debugger;
     input = elem.getElementsByTagName('textarea')[0];
+    console.log(input);
     e = input.addEventListener('keyup', function(input) {
       value = elem.getElementsByTagName('textarea')[0].value;
       elem.getElementsByClassName('markdown-preview')[0].innerHTML = myMarked(value);
