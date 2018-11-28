@@ -2,7 +2,8 @@
   %h3= resource_class.model_name.human
   = simple_form_for resource do |f|
     = f.input :title
-    = f.input :content, as: :marked
-    = f.input :state
     = f.input :locale, as: :select, collection: I18n.available_locales
+    = f.input :content, as: :marked
+    = f.input :target, collection: [PolicyManager::Config.user_resource]
+    = f.input :kind, collection: TermKind.select_options
     = f.submit

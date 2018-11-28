@@ -11,6 +11,10 @@ module PolicyManager
     before_validation :strip_content
     after_commit :htmlize_content
 
+    include ClassyEnum::ActiveRecord
+
+    classy_enum_attr :kind, class_name: TermKind
+
     def strip_content
       self.content = self.content.strip if self.content
     end

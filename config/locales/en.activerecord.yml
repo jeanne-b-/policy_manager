@@ -1,4 +1,8 @@
 en:
+  classy_enum:
+    term_kind:
+      mandatory: mandatory
+      optional: optional
   activerecord:
     errors:
       models:
