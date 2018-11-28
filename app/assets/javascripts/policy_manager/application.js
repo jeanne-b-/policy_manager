@@ -9,6 +9,7 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+//= require cocoon
 //= require_tree .
 
 var myMarked = marked;
@@ -33,7 +34,6 @@ function init() {
   Array.from(document.getElementsByClassName('row marked')).forEach(function(elem) {
     var input;
     var e;
-    debugger;
     input = elem.getElementsByTagName('textarea')[0];
     console.log(input);
     e = input.addEventListener('keyup', function(input) {
@@ -45,7 +45,11 @@ function init() {
 }
 
 document.addEventListener("turbolinks:load", function() {
-  //init();
+  init();
+});
+
+document.addEventListener('cocoon:after-insert', function() {
+  init();
 });
 
 document.addEventListener("DOMContentLoaded", function() {

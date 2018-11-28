@@ -1,6 +1,8 @@
 PolicyManager::Engine.routes.draw do
   resources :terms do
     post :sign, on: :member
+    post :publish, on: :member
+    post :archive, on: :member
   end
 
   resources :portability_requests do

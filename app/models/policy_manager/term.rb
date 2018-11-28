@@ -11,14 +11,21 @@ module PolicyManager
     has_one :terms_translation, -> () { where(locale: [I18n.locale, :en]) }
     accepts_nested_attributes_for :terms_translations, reject_if: :all_blank, allow_destroy: true
 
+    scope :mandatory_for_user,  -> (user) { where(state: :published, kind: :mandatory, target: [user.class.name, nil]) }
     validates_presence_of :state
 
     aasm column: :state do
       state :draft, initial: true
       state :published
+      state :archived
 
       event :publish do
          transitions :from => :draft, :to => :published
+      end
+
+      event :archive do
+         transitions :from => :draft, :to => :archived
+         transitions :from => :published, :to => :archived
       end
     end
 

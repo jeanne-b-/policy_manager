@@ -15,7 +15,7 @@ module PolicyManager
       end
 
       return unless PolicyManager::Config.is_admin?(user)
-      can [:edit, :update, :new, :create], Term
+      can [:edit, :update, :new, :create, :publish, :archive], Term
       can [:admin], PortabilityRequest
       can [:deny, :approve], PortabilityRequest do |p|
         p.waiting_for_approval?
