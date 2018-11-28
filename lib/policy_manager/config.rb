@@ -1,11 +1,12 @@
 module PolicyManager
   class Config
-    mattr_accessor :is_admin_method, :user_resource, :registery, :skip_portability_request_approval, :other_services, :token, :finder, :from_email, :user_language
+    mattr_accessor :current_user_method, :is_admin_method, :user_resource, :registery, :skip_portability_request_approval, :other_services, :token, :finder, :from_email, :user_language
 
     def self.setup
       yield self
       self
       @@is_admin_method ||= -> (user) { user.is_admin? }
+      @@current_user_method ||= :current_user
       @@user_resource ||= User
       @@from_email ||= 'privacy@42.fr'
       @@user_language ||= -> (user) {:en}

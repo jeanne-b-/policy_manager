@@ -6,6 +6,8 @@ class CreatePolicyManagerTerms < ActiveRecord::Migration[5.0]
       t.text :content_html
       t.string :state
       t.string :locale
+      t.string :target
+      t.string :kind
       t.timestamps
     end
   end

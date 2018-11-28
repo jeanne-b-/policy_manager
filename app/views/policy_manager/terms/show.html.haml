@@ -1,7 +1,7 @@
 .container
-  - if resource.signed_by? current_user
+  - if resource.signed_by? @current_user
     signed
-    = current_user.users_terms.where(term: resource).first.signed_at
+    = @current_user.users_terms.where(term: resource).first.signed_at
   - if can? :sign, resource
     = button_to 'sign', sign_term_path(resource), class: 'btn btn-success'
   %h2.font-weight-bold
