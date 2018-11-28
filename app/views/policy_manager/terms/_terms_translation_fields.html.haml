@@ -1,0 +1,5 @@
+.nested-fields.list-group-item
+  = f.input :locale, as: :select, collection: I18n.available_locales
+  = f.input :title
+  ~ f.input :content, as: :marked
+  = link_to_remove_association "remove translation", f

@@ -11,7 +11,7 @@ module PolicyManager
     end
 
     def permitted_params
-      params.permit(term: [:title, :content, :state, :locale])
+      params.permit(term: [:target, :kind, terms_translations_attributes: [:id, :_destroy, :title, :locale, :content]])
     end
   end
 end

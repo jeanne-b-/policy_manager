@@ -7,7 +7,7 @@
   - @terms.each do |t|
     %ul.list-group-item.row
       .col-sm-8
-        %h3= link_to t.title, term_path(t)
+        %h3= link_to t.terms_translation.title, term_path(t)
         - if t.signed_by? @current_user
           %span.text-success
             signed on 
