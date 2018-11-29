@@ -4,7 +4,7 @@
     = @current_user.users_terms.where(term: resource).first.signed_at
   - if can? :sign, resource
     = button_to 'sign', sign_term_path(resource), class: 'btn btn-success'
-  - translation = resource.terms_translations.where(locale: I18n.locale).first
+  - translation = resource.terms_translation
   %h2.font-weight-bold
     = translation.title
 

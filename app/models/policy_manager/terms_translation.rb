@@ -6,6 +6,7 @@ module PolicyManager
     validates_presence_of :content
 
     validates_inclusion_of :locale, in: -> (_) { I18n.available_locales.map(&:to_s) }, allow_nil: false
+    validates_uniqueness_of :locale, scope: :term_id
 
     before_validation :strip_content
     after_commit :htmlize_content

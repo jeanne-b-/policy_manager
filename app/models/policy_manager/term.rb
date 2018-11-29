@@ -8,7 +8,7 @@ module PolicyManager
 
     has_many :users_terms
     has_many :terms_translations, inverse_of: :term
-    has_one :terms_translation, -> () { where(locale: [I18n.locale, :en]) }
+    has_one :terms_translation, -> () { order("locale = '#{I18n.locale}' OR locale =  'en'") }
     accepts_nested_attributes_for :terms_translations, reject_if: :all_blank, allow_destroy: true
 
     scope :mandatory_for_user,  -> (user) { where(state: :published, kind: :mandatory, target: [user.class.name, nil]) }

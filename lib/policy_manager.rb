@@ -1,3 +1,4 @@
+require "cocoon"
 require "policy_manager/version"
 require "generators/policy_manager/install_generator"
 require "generators/policy_manager/serializer_generator"
