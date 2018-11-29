@@ -1,11 +1,23 @@
 PolicyManager::Engine.routes.draw do
+  root 'terms#index'
+
   resources :terms
+
   resources :portability_requests do
+    get :admin, on: :collection
+
     post :cancel, on: :member
     post :approve, on: :member
     post :deny, on: :member
-    get :admin, on: :collection
-    get :api_create, on: :collection
+    post :api_create, on: :collection
   end
-  root 'terms#index'
+
+  resources :anonymize_requests do
+    get :admin, on: :collection
+
+    post :cancel, on: :member
+    post :approve, on: :member
+    post :deny, on: :member
+    post :api_create, on: :collection
+  end
 end

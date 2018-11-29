@@ -1,0 +1,47 @@
+- pr = PolicyManager::AnonymizeRequest.new(owner: User.current_user)
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "create_anonymize_request", :style => 'text-align: left', :id => "create_anonymize_request", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h4.font-weight-bold.modal-title
+          = t('.new')
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"}
+      = simple_form_for pr do |f|
+        .modal-body
+          %p= t('.modal_content')
+          - if PolicyManager::Config.other_services
+            %p
+              = t('.other_services')
+              (
+              = PolicyManager::Config.other_services.keys.join(', ')
+              )
+              = f.input :password
+        .modal-footer
+          %button.btn.btn-success{type: 'submit'}
+            = t('.confirm')
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
+            = t('.cancel')
+
+.container
+  %h2.font-weight-bold
+    = resource_class.model_name.human.pluralize
+    - if can? :admin, resource_class
+      = link_to :admin, admin_anonymize_requests_path
+  %ul.list-group
+    - if can? :create, pr
+      = link_to t('.new'), '#', data: {toggle: 'modal', target: '#create_anonymize_request'}, class: 'btn btn-primary'
+    - @anonymize_requests.each do |p|
+      %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
+        .col-sm-8
+          %h4
+            = resource_class.model_name.human
+            = l(p.created_at)
+          %i= p.aasm.human_state
+        .col-sm-4
+          .btn-group.float-right
+            - if p.try(:attachement_url)
+              = link_to t('.anonymize'), p.attachement_url, class: 'btn btn-default'
+            - if can? :cancel, p
+              = link_to t('.cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+

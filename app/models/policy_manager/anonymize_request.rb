@@ -1,19 +1,15 @@
 require "aasm"
-require 'zip'
 
 module PolicyManager
-  class PortabilityRequest < ApplicationRecord
+  class AnonymizeRequest < ApplicationRecord
     include AASM
 
     belongs_to :owner, polymorphic: true
 
-    mount_uploader :attachement, AttachementUploader
-
-    after_create :change_state_if_needed
     validate :only_one_pending_request, on: :create
 
     def only_one_pending_request
-      self.errors.add(:owner_id, :not_unique) if owner.portability_requests.where(state: [:waiting_for_approval, :pending, :running]).count > 0
+      self.errors.add(:owner_id, :not_unique) if owner.anonymize_requests.where(state: [:waiting_for_approval, :pending, :running]).count > 0
     end
 
     aasm column: :state do
@@ -24,7 +20,7 @@ module PolicyManager
       state :denied
       state :canceled
   
-      event :approve, after_commit: :generate_json do
+      event :approve, after_commit: :create_on_other_services do
          transitions :from => :waiting_for_approval, :to => :pending
       end
 
@@ -36,21 +32,18 @@ module PolicyManager
         transitions :from => :waiting_for_approval, :to => :denied
       end
   
-      event :run, after_commit: :create_on_other_services do
+      event :run, after_commit: :anonymize do
         transitions :from => :pending, :to => :running
       end
       
-      event :done, after: :notify_user do
+      event :done do
         transitions :from => :running, :to => :done
       end
     end
 
-    def change_state_if_needed
-      self.approve! if Config.skip_portability_request_approval
-    end
-
     def create_on_other_services
-      return unless notify_other_services?
+      self.run! unless self.running?
+
       Config.other_services.each do |name, _|
         call_service(name)
       end
@@ -63,7 +56,7 @@ module PolicyManager
     def async_call_service(service_name)
       service = Config.other_services[service_name.to_sym]
       if service.respond_to?('[]', :host) # services must have a host in configuration file
-        response = HTTParty.post(service[:host] + Config.portability_path, query: encrypted_params_for_service(service_name)).response
+        response = HTTParty.post(service[:host] + Config.anonymize_path, query: encrypted_params_for_service(service_name)).response
       else
         return false
       end
@@ -83,12 +76,12 @@ module PolicyManager
         raise "endpoint '#{service_name}' returned unhandled status code (#{response.code}) with body #{response.body}, aborting."
       end
     end
-
+ 
     def self.encrypted_params(user_identifier, token = PolicyManager::Config.token)
       hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha512'), token, user_identifier)
       {user: user_identifier, hash: hash}
     end
-
+   
     def encrypted_params_for_service(service_name)
       user_identifier = owner.send(PolicyManager::Config.finder)
       PortabilityRequest.encrypted_params(user_identifier, Config.other_services[service_name.to_sym][:token])
@@ -103,33 +96,42 @@ module PolicyManager
       PortabilityMailer.completed(self.id).deliver_now
     end
 
-    def generate_json
+    def anonymize
       perform_async
     end
 
-    def async_generate_json
-      self.run! unless self.running?
-      file_path = File.join(Rails.root, 'tmp', 'generate_data_dump')
-      FileUtils.mkdir_p(file_path) unless File.exists?(file_path)
-      file_name = File.join(file_path, "#{self.id.to_s}.json")
-      file = File.new(file_name, 'w')
-
-      user_data = Registery.new.data_dump_for(owner).to_json
-
-      begin
-        file.flush
-        file.write(user_data)
-        zipfile_name = file_path + "#{Devise.friendly_token}.zip"
-        Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-          zipfile.add("#{self.id.to_s}.json", file)
-        end
-        self.update(attachement: File.open(zipfile_name))
-      ensure
-        File.delete(file)
-        File.delete(zipfile_name)
-      end
+    def async_anonymize
+      self.owner.send(PolicyManager::Config.anonymize_method)
       self.done!
     end
+
+    # def generate_json
+    #   perform_async
+    # end
+
+    # def async_generate_json
+    #   self.run! unless self.running?
+    #   file_path = File.join(Rails.root, 'tmp', 'generate_data_dump')
+    #   FileUtils.mkdir_p(file_path) unless File.exists?(file_path)
+    #   file_name = File.join(file_path, "#{self.id.to_s}.json")
+    #   file = File.new(file_name, 'w')
+
+    #   user_data = Registery.new.data_dump_for(owner).to_json
+
+    #   begin
+    #     file.flush
+    #     file.write(user_data)
+    #     zipfile_name = file_path + "#{Devise.friendly_token}.zip"
+    #     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+    #       zipfile.add("#{self.id.to_s}.json", file)
+    #     end
+    #     self.update(attachement: File.open(zipfile_name))
+    #   ensure
+    #     File.delete(file)
+    #     File.delete(zipfile_name)
+    #   end
+    #   self.done!
+    # end
 
   end
 end

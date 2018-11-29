@@ -1,0 +1,26 @@
+.container
+  %h2.font-weight-bold
+    = resource_class.model_name.human.pluralize
+    waiting for approval
+  %ul.list-group
+    - @anonymize_requests.each do |p|
+      %li.list-group-item.clearfix
+        - nb_days = ((Time.zone.now - p.created_at) / 1.day).round
+        - if nb_days < 20
+          - classes = 'text-success'
+        - elsif nb_days < 30
+          - classes = 'text-warning'
+        - else
+          - classes = 'text-danger'
+        %b= p.owner.try(:email) || p.owner.try(:login) || p.owner.try(:id)
+        %b{class: classes}
+          = time_ago_in_words(p.created_at)
+          ago
+        .btn-group.float-right.pull-right
+          - if can? :cancel, p
+            = link_to t('cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+          - if can? :approve, p
+            = link_to t('approve'), approve_anonymize_request_path(p), class: 'btn btn-success', method: :post
+          - if can? :deny, p
+            = link_to t('deny'), deny_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+
