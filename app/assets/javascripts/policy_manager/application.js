@@ -51,7 +51,7 @@ document.addEventListener("turbolinks:load", function() {
   init();
 });
 
-document.addEventListener('cocoon:after-insert', function() {
+$(document).on('cocoon:after-insert', function() {
   init();
 });
 
