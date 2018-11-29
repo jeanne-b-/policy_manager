@@ -6,6 +6,7 @@ require "policy_manager/railtie"
 require "policy_manager/engine"
 require "policy_manager/registery"
 require "policy_manager/config"
+require "classy_enum"
 
 module PolicyManager
   # Your code goes here...
