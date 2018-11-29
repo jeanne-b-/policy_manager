@@ -1,4 +1,5 @@
 require "cocoon"
+require "redcarpet"
 require "turbolinks"
 require "jquery-rails"
 require "policy_manager/version"
