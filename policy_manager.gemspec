@@ -43,5 +43,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rubyzip"
   spec.add_dependency "classy_enum"
   spec.add_dependency "redcarpet"
+  spec.add_dependency 'bootstrap', '~> 4.1.3'
+  spec.add_dependency 'jquery-rails'
+  spec.add_dependency 'turbolinks', '~> 5.2.0'
   spec.add_dependency "zip-zip"
 end
