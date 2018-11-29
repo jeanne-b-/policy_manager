@@ -9,7 +9,10 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+//= require turbolinks
+//= require jquery
 //= require cocoon
+//= require bootstrap
 //= require_tree .
 
 var myMarked = marked;
@@ -48,10 +51,7 @@ document.addEventListener("turbolinks:load", function() {
   init();
 });
 
-document.addEventListener('cocoon:after-insert', function() {
+$(document).on('cocoon:after-insert', function() {
   init();
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  init();
-});

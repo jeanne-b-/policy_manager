@@ -14,8 +14,11 @@
       %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
       %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
       = javascript_include_tag "//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
+      = javascript_include_tag "policy_manager/application", debug: false
+      - content_for :stylesheets, stylesheet_link_tag('bootstrap')
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "policy_manager/application", :media => "all"
     %body{style: 'background: #fff;'}
       .jumbotron.py-3
         .container.flex.justify-content-center
@@ -30,5 +33,3 @@
               %span{aria: {hidden: true}}
                 &times;
       = yield
-    = javascript_include_tag "application"
-    = javascript_include_tag "policy_manager/application", debug: false
