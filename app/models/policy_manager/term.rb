@@ -1,29 +1,36 @@
+require "aasm"
+
 module PolicyManager
   class Term < ApplicationRecord
-    validates_presence_of :title
-    validates_presence_of :content
+    include AASM
+    include ClassyEnum::ActiveRecord
+    classy_enum_attr :kind, class_name: TermKind
+
+    has_many :users_terms
+    has_many :terms_translations, inverse_of: :term
+    has_one :terms_translation, -> () { where(locale: [I18n.locale, :en]) }
+    accepts_nested_attributes_for :terms_translations, reject_if: :all_blank, allow_destroy: true
+
+    scope :mandatory_for_user,  -> (user) { where(state: :published, kind: :mandatory, target: [user.class.name, nil]) }
     validates_presence_of :state
 
-    validates_inclusion_of :locale, in: -> (_) { I18n.available_locales.map(&:to_s) }, allow_nil: false
+    aasm column: :state do
+      state :draft, initial: true
+      state :published
+      state :archived
 
-    before_validation :strip_content
-    after_commit :htmlize_content
+      event :publish do
+         transitions :from => :draft, :to => :published
+      end
 
-    def strip_content
-      self.content = self.content.strip if self.content
+      event :archive do
+         transitions :from => :draft, :to => :archived
+         transitions :from => :published, :to => :archived
+      end
     end
 
-    def self.renderer
-      @renderer ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                                            autolink: true,
-                                            tables: true,
-                                            hard_wrap: true,
-                                            with_toc_data: true,
-                                            filter_html: true)
-    end
-
-    def htmlize_content
-      self.update_columns(content_html: self.class.renderer.render(self.content))
+    def signed_by?(user)
+      self.users_terms.where(owner: user).any?
     end
   end
 end

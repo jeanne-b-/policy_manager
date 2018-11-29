@@ -1,7 +1,11 @@
 PolicyManager::Engine.routes.draw do
   root 'terms#index'
 
-  resources :terms
+  resources :terms do
+    post :sign, on: :member
+    post :publish, on: :member
+    post :archive, on: :member
+  end
 
   resources :portability_requests do
     get :admin, on: :collection

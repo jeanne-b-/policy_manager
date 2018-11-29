@@ -13,7 +13,7 @@ module PolicyManager
     end
     
     def set_current_user
-      @current_user = current_user
+      @current_user = send(PolicyManager::Config.current_user_method)
     end
   end
 end

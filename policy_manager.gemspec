@@ -40,6 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_dependency "aasm"
   spec.add_dependency "rubyzip"
+  spec.add_dependency "classy_enum"
   spec.add_dependency "redcarpet"
   spec.add_dependency "zip-zip"
 end

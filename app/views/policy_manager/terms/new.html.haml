@@ -1,8 +1,11 @@
 .container.bg-white
   %h3= resource_class.model_name.human
   = simple_form_for resource do |f|
-    = f.input :title
-    = f.input :content, as: :marked
-    = f.input :state
-    = f.input :locale, as: :select, collection: I18n.available_locales
+    = f.input :target, collection: [PolicyManager::Config.user_resource]
+    = f.input :kind, collection: TermKind.select_options
+    #terms-translations
+      = f.simple_fields_for :terms_translations do |tt|
+        = render 'terms_translation_fields', f: tt
+      .links
+        = link_to_add_association 'add translation', f, :terms_translations
     = f.submit

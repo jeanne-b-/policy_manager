@@ -31,7 +31,7 @@ module PolicyManager
       if ("#{item.class.to_s}PortabilitySerializer".constantize rescue nil)
         "#{item.class.to_s}PortabilitySerializer".constantize.new(item)
       else
-        item.attributes
+        item.attributes rescue nil
       end
     end
 

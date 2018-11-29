@@ -1,4 +1,4 @@
-- pr = PolicyManager::PortabilityRequest.new(owner: User.current_user)
+- pr = PolicyManager::PortabilityRequest.new(owner: @current_user)
 .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "create_portability_request", :style => 'text-align: left', :id => "create_portability_request", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
