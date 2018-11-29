@@ -42,6 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cocoon"
   spec.add_dependency "rubyzip"
   spec.add_dependency "classy_enum"
+  spec.add_dependency 'inherited_resources'
   spec.add_dependency "redcarpet"
   spec.add_dependency 'jquery-rails'
   spec.add_dependency 'turbolinks'
