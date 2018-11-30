@@ -3,7 +3,13 @@ en:
   deny: deny
   cancel: cancel
   confirm: confirm
+  log-in: You have to log in order to create a request.
   policy_manager:
+    terms:
+      index:
+        published: Published terms
+        draft: Draft terms
+        archived: Archived terms
     portability_requests:
       index:
         download: download my data

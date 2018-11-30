@@ -9,7 +9,8 @@ module PolicyManager
     validates_uniqueness_of :locale, scope: :term_id
 
     before_validation :strip_content
-    after_commit :htmlize_content
+
+    before_save :htmlize_content
 
     def strip_content
       self.content = self.content.strip if self.content
@@ -25,7 +26,7 @@ module PolicyManager
     end
 
     def htmlize_content
-      self.update_columns(content_html: self.class.renderer.render(self.content))
+      self.content_html = self.class.renderer.render(self.content)
     end
 
     def signed_by?(user)

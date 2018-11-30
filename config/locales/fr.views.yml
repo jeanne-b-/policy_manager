@@ -3,7 +3,13 @@ fr:
   deny: refuser
   cancel: annuler
   confirm: confirmer
+  log-in: Vous devez vous connecter pour pouvoir effectuer une demande.
   policy_manager:
+    terms:
+      index:
+        published: Publiées
+        draft: Brouillons
+        archived: Archivées
     portability_request:
       index:
         download: Télécharger mes données

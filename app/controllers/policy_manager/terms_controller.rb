@@ -6,7 +6,7 @@ module PolicyManager
 
     def collection
       if can? :create, Term
-        @terms = Term.all
+        @terms = Term.all.order(state: :desc)
       else
         @terms = Term.published
       end
@@ -20,12 +20,12 @@ module PolicyManager
 
     def publish
       resource.publish!
-      redirect_to collection_url
+      redirect_to terms_path
     end
 
     def archive
       resource.archive!
-      redirect_to collection_url
+      redirect_to terms_path
     end
 
 

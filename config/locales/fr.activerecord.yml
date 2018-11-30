@@ -1,8 +1,8 @@
 fr:
   activerecord:
     models:
-      policy_manager/portability_request: demande de portabilité
-      policy_manager/anonymize_request: demande d'anonymisation
+      policy_manager/portability_request: demandes de portabilité
+      policy_manager/anonymize_request: demandes d'anonymisation
     attributes:
       policy_manager/portability_request:
         state: état

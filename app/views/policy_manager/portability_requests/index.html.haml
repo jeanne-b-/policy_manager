@@ -21,18 +21,21 @@
               = f.input :notify_other_services
         .modal-footer
           %button.btn.btn-success{type: 'submit'}
-            = t('.confirm')
+            = t('confirm')
           %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}
-            = t('.cancel')
+            = t('cancel')
 
 .container
   %h2.font-weight-bold
-    = resource_class.model_name.human.pluralize
+    = resource_class.model_name.human
     - if can? :admin, resource_class
       = link_to :admin, admin_portability_requests_path
   %ul.list-group
     - if can? :create, pr
       = link_to t('.new'), '#', data: {toggle: 'modal', target: '#create_portability_request'}, class: 'btn btn-primary'
+    - else
+      %p.font-weight-bold
+        = t('log-in')
     - @portability_requests.each do |p|
       %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
         .col-sm-8

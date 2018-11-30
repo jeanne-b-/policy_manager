@@ -4,8 +4,10 @@
     - if can? :new, PolicyManager::Term
       .float-right
         = link_to 'new', new_term_path, class: 'btn btn-primary'
+  %h3.font-weight-bold
+    = t('.published')
   .row
-    - @terms.each do |t|
+    - @terms.where(state: :published).each do |t|
       .col-sm-12
         %ul.list-group-item.mt-4
           %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
@@ -16,7 +18,51 @@
             = t.state
             - if t.signed_by? @current_user
               %span.text-success
-                signed on 
+                signed on
+                = l @current_user.users_terms.where(term: t).first.signed_at
+          .flex
+            - if can? :sign, t
+              = button_to 'sign', sign_term_path(t), class: 'btn btn-success'
+            - if PolicyManager::Config.is_admin?(@current_user)
+              = button_to 'publish', publish_term_path(t), class: 'btn btn-success' if can? :publish, t
+              = button_to 'archive', archive_term_path(t), class: 'btn btn-danger' if can? :archive, t
+  %h3.font-weight-bold
+    = t('.draft')
+  .row
+    - @terms.where(state: :draft).each do |t|
+      .col-sm-12
+        %ul.list-group-item.mt-4
+          %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
+          %hr
+          .text-muted
+            = l(t.updated_at)
+            = t.kind
+            = t.state
+            - if t.signed_by? @current_user
+              %span.text-success
+                signed on
+                = l @current_user.users_terms.where(term: t).first.signed_at
+          .flex
+            - if can? :sign, t
+              = button_to 'sign', sign_term_path(t), class: 'btn btn-success'
+            - if PolicyManager::Config.is_admin?(@current_user)
+              = button_to 'publish', publish_term_path(t), class: 'btn btn-success' if can? :publish, t
+              = button_to 'archive', archive_term_path(t), class: 'btn btn-danger' if can? :archive, t
+  %h3.font-weight-bold
+    = t('.archived')
+  .row
+    - @terms.where(state: :archived).each do |t|
+      .col-sm-12
+        %ul.list-group-item.mt-4
+          %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
+          %hr
+          .text-muted
+            = l(t.updated_at)
+            = t.kind
+            = t.state
+            - if t.signed_by? @current_user
+              %span.text-success
+                signed on
                 = l @current_user.users_terms.where(term: t).first.signed_at
           .flex
             - if can? :sign, t

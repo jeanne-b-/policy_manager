@@ -11,8 +11,8 @@ en:
             owner_id:
               not_unique: You already have a pending request
     models:
-      policy_manager/portability_request: portability request
-      policy_manager/anonymize_request: anonymization request
+      policy_manager/portability_request: portability requests
+      policy_manager/anonymize_request: anonymization requests
     attributes:
       policy_manager/portability_request:
         state: state
