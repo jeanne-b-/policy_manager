@@ -7,20 +7,22 @@
   .row
     - @terms.each do |t|
       .col-sm-12
-        %ul.list-group-item.mt-4
+        %ul.list-group-item.mt-4{t.published? ? {} : {style: 'opacity: 0.7'}}
           %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
           %hr
           .text-muted
-            = l(t.updated_at)
-            = t.kind
-            = t.state
-            - if t.signed_by? @current_user
-              %span.text-success
-                signed on 
-                = l @current_user.users_terms.where(term: t).first.signed_at
-          .flex
-            - if can? :sign, t
-              = button_to 'sign', sign_term_path(t), class: 'btn btn-success'
-            - if PolicyManager::Config.is_admin?(@current_user)
-              = button_to 'publish', publish_term_path(t), class: 'btn btn-success' if can? :publish, t
-              = button_to 'archive', archive_term_path(t), class: 'btn btn-danger' if can? :archive, t
+          .d-flex
+            .col-6
+              = l(t.updated_at)
+              = t.kind
+              = t.state
+              - if t.signed_by? @current_user
+                %span.text-success
+                  signed on 
+                  = l @current_user.users_terms.where(term: t).first.signed_at
+            .col-6.d-flex.flex-row-reverse
+              - if can? :sign, t
+                = button_to t('sign'), sign_term_path(t), class: 'btn btn-success'
+              - if PolicyManager::Config.is_admin?(@current_user)
+                = button_to t('publish'), publish_term_path(t), class: 'btn btn-success' if can? :publish, t
+                = button_to t('archive'), archive_term_path(t), class: 'btn btn-danger' if can? :archive, t

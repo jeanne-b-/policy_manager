@@ -1,8 +1,8 @@
 en:
   classy_enum:
     term_kind:
-      mandatory: mandatory
-      optional: optional
+      mandatory: mandatory - signature needed
+      optional: optional - signature not needed
   activerecord:
     errors:
       models:
@@ -13,6 +13,8 @@ en:
     models:
       policy_manager/portability_request: portability request
       policy_manager/anonymize_request: anonymization request
+      policy_manager/term: Terms and Conditions
+      policy_manager/users_term: Terms and Conditions signature
     attributes:
       policy_manager/portability_request:
         state: state
@@ -22,3 +24,10 @@ en:
         state/denied: Your request has been denied. 
         state/canceled: You have canceled your request. 
         state/done: Done.
+      policy_manager/term:
+        state: state
+        state/draft: draft
+        state/published: published
+        state/archived: archived
+      policy_manager/users_term:
+        signed_at: You have signed this document on

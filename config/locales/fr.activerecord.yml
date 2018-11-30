@@ -1,8 +1,20 @@
 fr:
+  classy_enum:
+    term_kind:
+      mandatory: obligatoire - requiert une signature
+      optional: optionel - ne requiert pas de signature
   activerecord:
+    errors:
+      models:
+        policy_manager/portability_request:
+          attributes:
+            owner_id:
+              not_unique: Vous avez déjà une demande en cours
     models:
       policy_manager/portability_request: demande de portabilité
       policy_manager/anonymize_request: demande d'anonymisation
+      policy_manager/term: Conditions et Politiques
+      policy_manager/users_term: Signature de Conditions et Politiques
     attributes:
       policy_manager/portability_request:
         state: état
@@ -12,3 +24,10 @@ fr:
         state/denied: Votre demande a été refusée. 
         state/canceled: Vous avez annulée votre demande.
         state/done: Fini.
+      policy_manager/term:
+        state: état
+        state/draft: brouillon
+        state/published: publié
+        state/archived: archivé
+      policy_manager/users_term:
+        signed_at: Vous avez signé ce document le     
