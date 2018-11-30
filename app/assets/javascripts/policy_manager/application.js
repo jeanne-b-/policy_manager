@@ -12,7 +12,6 @@
 //= require turbolinks
 //= require jquery
 //= require cocoon
-//= require bootstrap
 //= require_tree .
 
 var myMarked = marked;

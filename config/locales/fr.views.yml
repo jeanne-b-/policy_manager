@@ -4,6 +4,10 @@ fr:
   cancel: annuler
   confirm: confirmer
   log-in: Vous devez vous connecter pour pouvoir effectuer une demande.
+  new: nouveau
+  publish: publier
+  archive: archiver
+  sign: signer
   policy_manager:
     terms:
       index:
@@ -17,6 +21,7 @@ fr:
         other_services: Si vous le souhaitez, nous pouvons faire une demande de portabilité sur nos autres services
         request_will_be_approved: Avant de vous envoyer vos données, un administrateur doit valider votre demande
         modal_content: Nous vons enverrons vos données sous le format JSON par mail.
+        cancel: Annuler
     anonymize_request:
       index:
         anonymize: anonymiser mes données
@@ -24,3 +29,4 @@ fr:
         other_services: Cette demande sera automatiquement répliquée sur nos autres services
         request_will_be_approved: Avant d'anonymiser vos données, un administrateur doit valider votre demande
         modal_content: Vous êtes sur le point d'effacer l'intégralité de vos données sur notre plateforme. Ce changement est définitif et irrévocable.
+        cancel: Annuler

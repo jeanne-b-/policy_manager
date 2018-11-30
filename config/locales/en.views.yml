@@ -4,6 +4,10 @@ en:
   cancel: cancel
   confirm: confirm
   log-in: You have to log in order to create a request.
+  new: new
+  publish: publish
+  archive: archive
+  sign: sign
   policy_manager:
     terms:
       index:
@@ -17,6 +21,7 @@ en:
         other_services: If you wish, we can also make a portability request on other services we own for you
         request_will_be_approved: Before sending you your data, an admin has to approve your request.
         modal_content: You are about to request your data, we will send you a JSON dump via email.
+        cancel: cancel
     anonymize_requests:
       index:
         anonymize: anonymize my data
@@ -24,3 +29,4 @@ en:
         other_services: This request will automatically be replicated on our other services
         request_will_be_approved: Before anonymizing your data, an admin has to approve your request
         modal_content: You are about to delete all your data on our platform. This change is permanent and irrevocable.
+        cancel: cancel
