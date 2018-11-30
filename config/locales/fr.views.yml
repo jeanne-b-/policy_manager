@@ -15,18 +15,21 @@ fr:
         published: Publiées
         draft: Brouillons
         archived: Archivées
-    portability_request:
+    portability_requests:
       index:
         download: Télécharger mes données
         new: Faire une demande de portabilité
-        other_services: Si vous le souhaitez, nous pouvons faire une demande de portabilité sur nos autres services
-        request_will_be_approved: Avant de vous envoyer vos données, un administrateur doit valider votre demande
-        modal_content: Nous vons enverrons vos données sous le format JSON par mail.
+      new:
+        title: Vous êtes sur le point de demander vos données
+        modal_content: "Nous vons enverrons par mail un lien pour télécharger vos données, ce lien expirera quelques jours plus tard.</br>Notez qu'il est possible que quelques jours soient nécessaires afin de répondre à votre demande."
+        request_will_be_approved: Afin de s'assurer que votre demande n'est pas abusive et pour protéger votre compte, un administrateur devra valider votre demande.
+        other_services: Si vous le souhaitez, nous pouvons aussi faire une demande de portabilité de votre part sur nos autres services
         cancel: Annuler
     anonymize_request:
       index:
         anonymize: anonymiser mes données
         new: Faire une demande d'anonymisation
+      new:
         other_services: Cette demande sera automatiquement répliquée sur nos autres services
         request_will_be_approved: Avant d'anonymiser vos données, un administrateur doit valider votre demande
         modal_content: Vous êtes sur le point d'effacer l'intégralité de vos données sur notre plateforme. Ce changement est définitif et irrévocable.

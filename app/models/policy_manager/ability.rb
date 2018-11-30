@@ -12,7 +12,7 @@ module PolicyManager
 
       return if user.nil?
 
-      can [:create], PortabilityRequest
+      can [:new, :create], PortabilityRequest
       can [:cancel], PortabilityRequest do |pr|
         pr.owner == user and pr.may_cancel?
       end

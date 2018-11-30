@@ -18,14 +18,17 @@ en:
       index:
         download: download my data
         new: make a portablity request
-        other_services: If you wish, we can also make a portability request on other services we own for you
-        request_will_be_approved: Before sending you your data, an admin has to approve your request.
-        modal_content: You are about to request your data, we will send you a JSON dump via email.
+      new:
+        title: You are about to request your data
+        modal_content: "We will send you a link to download you data via email. This link will expire a couple of days later.</br>It is possible you request may take a few days to be fulfilled."
+        request_will_be_approved: To help protect your data and to make sure your request is not abusive, an admin has to approve your request.
+        other_services: If you wish, we can also make a portability request on other services we own on your behalf
         cancel: cancel
     anonymize_requests:
       index:
         anonymize: anonymize my data
         new: make an anonymization request
+      new:
         other_services: This request will automatically be replicated on our other services
         request_will_be_approved: Before anonymizing your data, an admin has to approve your request
         modal_content: You are about to delete all your data on our platform. This change is permanent and irrevocable.
