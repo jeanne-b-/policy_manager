@@ -8,6 +8,7 @@ fr:
   publish: publier
   archive: archiver
   sign: signer
+  edit: modifier
   policy_manager:
     terms:
       index:

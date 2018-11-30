@@ -1,7 +1,8 @@
 .container
   - if resource.signed_by? @current_user
-    = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
-    = l @current_user.users_terms.where(term: resource).first.signed_at
+    %span.text-success
+      = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
+      = l @current_user.users_terms.where(term: resource).first.signed_at
   - if can? :sign, resource
     = button_to t('sign'), sign_term_path(resource), class: 'btn btn-success'
   - translation = resource.terms_translation
