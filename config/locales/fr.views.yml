@@ -13,8 +13,11 @@ fr:
   no_terms: "Aucune conditions ou politiques n'ont été publiées pour l'instant."
   policy_manager:
     terms:
-      new:
+      terms_translation_fields:
+        remove_translation: Retirer la traduction
+      form:
         target_label: Accessible uniquement aux %{target} identifiés
+        add_translation: Ajouter une traduction
       index:
         published: Publiées
         draft: Brouillons

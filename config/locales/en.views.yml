@@ -8,12 +8,16 @@ en:
   publish: publish
   archive: archive
   sign: sign
+  edit: edit
   release_feature: "This feature will be released soon."
   no_terms: "No terms or conditions have been published for now."
   policy_manager:
     terms:
-      new:
-        target_label: Only accessible to logged in %{target}
+      terms_translation_fields:
+        remove_translation: Remove translation
+      form:
+        target_label: Only accessible to authentified %{target}
+        add_translation: Add translation
       index:
         published: Published terms
         draft: Draft terms

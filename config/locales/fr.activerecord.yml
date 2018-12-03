@@ -1,4 +1,21 @@
 fr:
+  helpers:
+    submit:
+      term:
+        create: Valider
+        edit: Valider
+  simple_form:
+    labels:
+      term:
+        target: Cible
+        kind: Signature
+      terms_translations:
+        locale: Langue
+        title: Titre
+        content: Contenu
+    hints:
+      terms_translations:
+        content: supporte le markdown
   classy_enum:
     term_kind:
       mandatory: obligatoire - requiert une signature
@@ -6,6 +23,10 @@ fr:
   activerecord:
     errors:
       models:
+        policy_manager/term:
+          attributes:
+            terms_translations:
+              translations_missing: Vous devez remplir au moins une traduction
         policy_manager/portability_request:
           attributes:
             owner_id:
@@ -19,6 +40,7 @@ fr:
       policy_manager/anonymize_request: Demandes d'anonymisation
       policy_manager/term: Conditions et Politiques
       policy_manager/users_term: Signature de Conditions et Politiques
+      policy_manager/terms_translation: Traductions
     attributes:
       policy_manager/portability_request:
         state: état

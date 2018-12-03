@@ -4,10 +4,12 @@
       = resource_class.model_name.human.pluralize
       - if can? :new, PolicyManager::Term
         .float-right
-          = link_to 'new', new_term_path, class: 'btn btn-primary'
+          = link_to t('new'), new_term_path, class: 'btn btn-primary'
   - else
     %h2.font-weight-bold.text-center
       = t('no_terms')
+      - if can? :new, PolicyManager::Term
+        = link_to t('new'), new_term_path, class: 'btn btn-primary m-auto'
   .row
     - if PolicyManager::Config.is_admin?(@current_user)
       - @terms.group_by(&:state).each do |state, terms|

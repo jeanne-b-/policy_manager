@@ -2,4 +2,4 @@
   = f.input :locale, as: :select, collection: I18n.available_locales
   = f.input :title
   ~ f.input :content, as: :marked
-  = link_to_remove_association "remove translation", f
+  = link_to_remove_association t('.remove_translation'), f, class: 'text-danger'

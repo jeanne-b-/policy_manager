@@ -17,6 +17,7 @@ module PolicyManager
     scope :mandatory_for_user,  -> (user) { where(state: :published, kind: :mandatory, target: [user.class.name, nil]) }
 
     validates_presence_of :state
+    validate :translations_count_valid?
 
     aasm column: :state do
       state :draft, initial: true
@@ -36,6 +37,12 @@ module PolicyManager
 
     def signed_by?(user)
       self.users_terms.where(owner: user).any?
+    end
+
+    private
+
+    def translations_count_valid?
+      self.errors.add(:terms_translations, :translations_missing) and return false unless terms_translations.reject(&:marked_for_destruction?).count > 0
     end
   end
 end
