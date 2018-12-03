@@ -10,6 +10,8 @@ en:
   sign: sign
   policy_manager:
     terms:
+      new:
+        target_label: Only accessible to logged in %{target}
       index:
         published: Published terms
         draft: Draft terms
@@ -25,6 +27,8 @@ en:
         other_services: If you wish, we can also make a portability request on other services we own on your behalf
         cancel: cancel
     anonymize_requests:
+      create:
+        wrong_password: Wrong password
       index:
         anonymize: anonymize my data
         new: make an anonymization request

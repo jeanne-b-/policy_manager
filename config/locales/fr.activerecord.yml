@@ -10,6 +10,10 @@ fr:
           attributes:
             owner_id:
               not_unique: Vous avez déjà une demande en cours
+        policy_manager/anonymize_request:
+          attributes:
+            owner_id:
+              not_unique: Vous avez déjà une demande en cours
     models:
       policy_manager/portability_request: Demandes de portabilité
       policy_manager/anonymize_request: Demandes d'anonymisation

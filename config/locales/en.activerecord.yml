@@ -10,6 +10,10 @@ en:
           attributes:
             owner_id:
               not_unique: You already have a pending request
+        policy_manager/anonymize_request:
+          attributes:
+            owner_id:
+              not_unique: You already have a pending request
     models:
       policy_manager/portability_request: Portability requests
       policy_manager/anonymize_request: Anonymization requests

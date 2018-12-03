@@ -22,7 +22,7 @@
 /               - if p.try(:attachement_url)
 /                 = link_to t('.download'), p.attachement_url, class: 'btn btn-default'
 /               - if can? :cancel, p
-/                 = button_to t('.cancel'), cancel_portability_request_path(p), class: 'btn btn-danger'
+/                 = button_to t('cancel'), cancel_portability_request_path(p), class: 'btn btn-danger'
 / - else
 /   .container.text-center
 /     %h2.font-weight-bold
