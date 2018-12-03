@@ -33,8 +33,8 @@ module PolicyManager
 
     def create
       create! do |s, f|
-        s.html { redirect_to collection_url }
-        f.html { redirect_to collection_url, flash: {error: resource.errors.messages.values.join(', ')} }
+        s.html { redirect_to portability_requests_path }
+        f.html { redirect_to portability_requests_path, flash: {error: resource.errors.messages.values.join(', ')} }
       end
     end
 
@@ -48,17 +48,17 @@ module PolicyManager
 
     def approve
       resource.approve!
-      redirect_to collection_url
+      redirect_to portability_requests_path
     end
 
     def cancel
       resource.cancel!
-      redirect_to collection_url
+      redirect_to portability_requests_path
     end
 
     def deny
       resource.deny!
-      redirect_to collection_url
+      redirect_to portability_requests_path
     end
   end
 end
