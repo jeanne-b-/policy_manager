@@ -25,7 +25,9 @@ fr:
         request_will_be_approved: Afin de s'assurer que votre demande n'est pas abusive et pour protéger votre compte, un administrateur devra valider votre demande.
         other_services: Si vous le souhaitez, nous pouvons aussi faire une demande de portabilité de votre part sur nos autres services
         cancel: Annuler
-    anonymize_request:
+    anonymize_requests:
+      create:
+        wrong_password: Mauvais mot de passe
       index:
         anonymize: anonymiser mes données
         new: Faire une demande d'anonymisation

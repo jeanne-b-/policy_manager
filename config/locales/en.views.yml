@@ -25,6 +25,8 @@ en:
         other_services: If you wish, we can also make a portability request on other services we own on your behalf
         cancel: cancel
     anonymize_requests:
+      create:
+        wrong_password: Wrong password
       index:
         anonymize: anonymize my data
         new: make an anonymization request
