@@ -8,8 +8,10 @@ en:
   publish: publish
   archive: archive
   sign: sign
+  edit: edit
   release_feature: "This feature will be released soon."
   no_terms: "No terms or conditions have been published for now."
+  intra_anonymize: "You cannot ask for an account anonymization from this platform."
   policy_manager:
     terms:
       new:
