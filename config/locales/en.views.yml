@@ -10,6 +10,8 @@ en:
   sign: sign
   policy_manager:
     terms:
+      new:
+        target_label: Only accessible to logged in %{target}
       index:
         published: Published terms
         draft: Draft terms

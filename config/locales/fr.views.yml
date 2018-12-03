@@ -11,6 +11,8 @@ fr:
   edit: modifier
   policy_manager:
     terms:
+      new:
+        target_label: Accessible uniquement aux %{target} identifiés
       index:
         published: Publiées
         draft: Brouillons
