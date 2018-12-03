@@ -8,6 +8,8 @@ en:
   publish: publish
   archive: archive
   sign: sign
+  release_feature: "This feature will be released soon."
+  no_terms: "No terms or conditions have been published for now."
   policy_manager:
     terms:
       new:
