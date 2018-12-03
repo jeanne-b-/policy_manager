@@ -33,11 +33,12 @@ module PolicyManager
 
     def create
       if params[:anonymize_request].blank? or params[:anonymize_request][:password].blank? or !current_user.valid_password?(params[:anonymize_request][:password])
-        redirect_to new_resource_url, flash: {error: t('.wrong_password')} and return
+        redirect_to new_anonymize_request_path, flash: {error: t('.wrong_password')} and return
       end
 
       create! do |s, f|
-        s.html { redirect_to collection_url }
+        s.html { redirect_to anonymize_requests_path }
+        f.html { redirect_to new_anonymize_request_path, flash: {error: resource.errors.messages.values.join(', ')} }
       end
     end
 
@@ -51,17 +52,17 @@ module PolicyManager
 
     def approve
       resource.approve!
-      redirect_to collection_url
+      redirect_to anonymize_requests_path
     end
 
     def cancel
       resource.cancel!
-      redirect_to collection_url
+      redirect_to anonymize_requests_path
     end
 
     def deny
       resource.deny!
-      redirect_to collection_url
+      redirect_to anonymize_requests_path
     end
   end
 end
