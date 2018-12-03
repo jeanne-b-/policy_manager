@@ -16,11 +16,11 @@
         %b{class: classes}
           = time_ago_in_words(p.created_at)
           ago
-        .btn-group.float-right.pull-right
+        .btn-group.float-right.d-flex.pull-right
           - if can? :cancel, p
-            = link_to t('cancel'), cancel_portability_request_path(p), class: 'btn btn-danger', method: :post
+            = button_to t('cancel'), cancel_portability_request_path(p), class: 'btn btn-danger'
           - if can? :approve, p
-            = link_to t('approve'), approve_portability_request_path(p), class: 'btn btn-success', method: :post
+            = button_to t('approve'), approve_portability_request_path(p), class: 'btn btn-success'
           - if can? :deny, p
-            = link_to t('deny'), deny_portability_request_path(p), class: 'btn btn-danger', method: :post
+            = button_to t('deny'), deny_portability_request_path(p), class: 'btn btn-danger'
 

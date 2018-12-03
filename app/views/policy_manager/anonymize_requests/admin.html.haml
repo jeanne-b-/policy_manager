@@ -18,9 +18,9 @@
           ago
         .btn-group.float-right.pull-right
           - if can? :cancel, p
-            = link_to t('cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+            = button_to t('cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger'
           - if can? :approve, p
-            = link_to t('approve'), approve_anonymize_request_path(p), class: 'btn btn-success', method: :post
+            = button_to t('approve'), approve_anonymize_request_path(p), class: 'btn btn-success'
           - if can? :deny, p
-            = link_to t('deny'), deny_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+            = button_to t('deny'), deny_anonymize_request_path(p), class: 'btn btn-danger'
 
