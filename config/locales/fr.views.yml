@@ -9,9 +9,9 @@ fr:
   archive: archiver
   sign: signer
   edit: modifier
-  release_feature: "Cette fonctionnalité sera bientôt en ligne."
-  no_terms: "Aucune conditions ou politiques n'ont été publiées pour l'instant."
-  intra_anonymize: "Vous ne pouvez pas effectuer une demande d'anonymisation de compte depuis cette plateforme."
+  release_feature: "Cette fonctionnalité sera bientôt en ligne"
+  no_terms: "Aucune conditions ou politiques n'ont été publiées pour l'instant"
+  intra_anonymize: "Vous ne pouvez pas effectuer une demande d'anonymisation de compte depuis cette plateforme"
   policy_manager:
     terms:
       terms_translation_fields:
