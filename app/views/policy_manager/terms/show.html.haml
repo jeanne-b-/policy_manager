@@ -4,7 +4,7 @@
       = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
       = l @current_user.users_terms.where(term: resource).first.signed_at
   - if can? :sign, resource
-    = button_to t('sign'), sign_term_path(resource), class: 'btn btn-success'
+    = button_to t('policy_manager_sign'), sign_term_path(resource), class: 'btn btn-success'
   - translation = resource.terms_translation
   %h2.font-weight-bold
     = translation.title

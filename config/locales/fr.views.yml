@@ -3,11 +3,11 @@ fr:
   deny: refuser
   cancel: annuler
   confirm: confirmer
-  log-in: Vous devez vous connecter pour pouvoir effectuer une demande.
+  policy_manager_log_in: Vous devez vous connecter pour pouvoir effectuer une demande.
   new: nouveau
   publish: publier
   archive: archiver
-  sign: signer
+  policy_manager_sign: signer
   edit: modifier
   release_feature: "Cette fonctionnalité sera bientôt en ligne"
   no_terms: "Aucune conditions ou politiques n'ont été publiées pour l'instant"

@@ -3,11 +3,11 @@ en:
   deny: deny
   cancel: cancel
   confirm: confirm
-  log-in: You have to log in order to create a request.
+  policy_manager_log_in: You have to log in order to create a request.
   new: new
   publish: publish
   archive: archive
-  sign: sign
+  policy_manager_sign: sign
   edit: edit
   release_feature: "This feature will be released soon."
   no_terms: "No terms or conditions have been published for now."
