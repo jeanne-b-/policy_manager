@@ -1,29 +1,31 @@
-- if @current_user
-  .container
-    %h2.font-weight-bold
-      = resource_class.model_name.human
-      - if can? :admin, resource_class
-        .float-right
-          = link_to :admin, admin_portability_requests_path, class: 'btn btn-primary'
-    %ul.list-group
-      - if can? :new, resource_class
-        = link_to t('.new'), new_portability_request_path, class: 'btn btn-primary'
-      - @portability_requests.each do |p|
-        %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
-          .col-sm-8
-            %h4
-              = resource_class.model_name.human
-              = l(p.created_at)
-            %i= p.aasm.human_state
-          .col-sm-4
-            .btn-group.float-right
-              - if p.try(:attachement_url)
-                = link_to t('.download'), p.attachement_url, class: 'btn btn-default'
-              - if can? :cancel, p
-                = button_to t('.cancel'), cancel_portability_request_path(p), class: 'btn btn-danger'
-- else
-  .container.text-center
-    %h2.font-weight-bold
-      = resource_class.model_name.human
-    %p.font-weight-bold
-      = t('log-in')
+%h2.text-center
+  = "This feature will be released soon."
+/ - if @current_user
+/   .container
+/     %h2.font-weight-bold
+/       = resource_class.model_name.human
+/       - if can? :admin, resource_class
+/         .float-right
+/           = link_to :admin, admin_portability_requests_path, class: 'btn btn-primary'
+/     %ul.list-group
+/       - if can? :new, resource_class
+/         = link_to t('.new'), new_portability_request_path, class: 'btn btn-primary'
+/       - @portability_requests.each do |p|
+/         %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
+/           .col-sm-8
+/             %h4
+/               = resource_class.model_name.human
+/               = l(p.created_at)
+/             %i= p.aasm.human_state
+/           .col-sm-4
+/             .btn-group.float-right
+/               - if p.try(:attachement_url)
+/                 = link_to t('.download'), p.attachement_url, class: 'btn btn-default'
+/               - if can? :cancel, p
+/                 = button_to t('.cancel'), cancel_portability_request_path(p), class: 'btn btn-danger'
+/ - else
+/   .container.text-center
+/     %h2.font-weight-bold
+/       = resource_class.model_name.human
+/     %p.font-weight-bold
+/       = t('log-in')

@@ -12,10 +12,10 @@ module PolicyManager
 
       return if user.nil?
 
-      can [:new, :create], PortabilityRequest
-      can [:cancel], PortabilityRequest do |pr|
-        pr.owner == user and pr.may_cancel?
-      end
+      # can [:new, :create], PortabilityRequest
+      # can [:cancel], PortabilityRequest do |pr|
+      #   pr.owner == user and pr.may_cancel?
+      # end
 
       can [:sign], Term do |t|
         t.published? and t.kind.require_signing? and !t.signed_by?(user)
@@ -30,7 +30,7 @@ module PolicyManager
 
       return unless PolicyManager::Config.is_admin?(user)
 
-      can [:show, :index, :edit, :update, :new, :create], Term
+      can [:show, :edit, :update, :new, :create], Term
       can [:publish], Term do |t|
         t.may_publish?
       end
@@ -38,11 +38,11 @@ module PolicyManager
         t.may_archive?
       end
 
-      can [:admin], [PortabilityRequest, AnonymizeRequest]
-      can [:approve], [PortabilityRequest, AnonymizeRequest] do |object|
+      can [:admin], AnonymizeRequest # [PortabilityRequest, AnonymizeRequest]
+      can [:approve], AnonymizeRequest do |object| # [PortabilityRequest, AnonymizeRequest] do |object|
         object.may_approve?
       end
-      can [:deny], [PortabilityRequest, AnonymizeRequest] do |object|
+      can [:deny], AnonymizeRequest do |object| # [PortabilityRequest, AnonymizeRequest] do |object|
         object.may_deny?
       end
     end
