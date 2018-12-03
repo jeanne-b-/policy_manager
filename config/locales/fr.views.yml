@@ -30,6 +30,7 @@ fr:
         anonymize: anonymiser mes données
         new: Faire une demande d'anonymisation
       new:
+        title: Vous êtes sur le point de faire une demande d'anonymisation
         other_services: Cette demande sera automatiquement répliquée sur nos autres services
         request_will_be_approved: Avant d'anonymiser vos données, un administrateur doit valider votre demande
         modal_content: Vous êtes sur le point d'effacer l'intégralité de vos données sur notre plateforme. Ce changement est définitif et irrévocable.

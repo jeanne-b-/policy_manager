@@ -1,0 +1,16 @@
+.container
+  %h3.font-weight-bold
+    = t('.title')
+  = simple_form_for resource do |f|
+    %p= t('.modal_content').html_safe
+    - unless PolicyManager::Config.skip_portability_request_approval
+      %p= t('.request_will_be_approved')
+    - if PolicyManager::Config.other_services
+      %p
+        = t('.other_services')
+        (
+        = PolicyManager::Config.other_services.keys.join(', ')
+        )
+        = f.input :password
+    %button.btn.btn-success{type: 'submit'}
+      = t('confirm')
