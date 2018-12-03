@@ -1,4 +1,4 @@
-.container
+.container.pb-4
   - if PolicyManager::Term.where(state: :published).any?
     %h2.font-weight-bold
       = resource_class.model_name.human.pluralize
