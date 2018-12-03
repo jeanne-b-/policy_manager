@@ -6,8 +6,16 @@ module PolicyManager
 
     before_filter :set_current_user
     before_filter :merge_abilities
+    before_filter :set_locale
 
     private
+
+    def set_locale
+      locale = params[:locale]
+      locale ||= PolicyManager::Config.user_language.call(@current_user) if @current_user
+      locale ||= :en
+      I18n.locale = locale
+    end
 
     def merge_abilities
       current_ability.merge(PolicyManager::Ability.new(@current_user))
