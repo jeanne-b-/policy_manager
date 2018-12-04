@@ -32,7 +32,7 @@
                       = l @current_user.users_terms.where(term: t).first.signed_at
                 .col-4.d-flex.flex-row-reverse
                   - if can? :sign, t
-                    = button_to t('sign'), sign_term_path(t), class: 'btn btn-success'
+                    = button_to t('policy_manager_sign'), sign_term_path(t), class: 'btn btn-success'
                   = button_to t('publish'), publish_term_path(t), class: 'btn btn-success' if can? :publish, t
                   = button_to t('archive'), archive_term_path(t), class: 'btn btn-danger' if can? :archive, t
                   = link_to t('edit'), edit_term_path(t), class: 'btn btn-warning' if can? :archive, t
