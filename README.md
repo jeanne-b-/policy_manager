@@ -86,6 +86,50 @@ This adds the approriate relationships to your users.
 mount PolicyManager::Engine => "/policies"
 ```
 
+## Set up other services
+
+You can set up policy_manager so it can replicate anonymization/portability requests to other services :
+```ruby
+# config/initializers/policy_manager.rb
+PolicyManager::Config.setup do |config|
+  secrets = YAML.load_file(Rails.root + 'config/policy_manager.yml')[Rails.env]
+  config.token = secrets['token']
+  config.other_services = secrets['other_services']
+end
+```
+
+```ruby
+# config/policy_manager.yml
+development:
+  token: 'super-long-token'
+  other_services:
+    example:
+      host: 'http://localhost:4000'
+      token: 'sdadasdasdasdsdasdasss'
+test:
+  token: 'super-long-token'
+  other_services:
+    example:
+      host: 'http://localhost:4000'
+      token: 'sdadasdasdasdsdasdasss'
+production:
+  token: 'super-long-token'
+  other_services:
+    example:
+      host: 'https://example.com'
+      token: 'sdadasdasdasdsdasdasss'
+staging:
+  token: 'super-long-token'
+  other_services:
+    example:
+      host: 'https://example-staging.com'
+      token: 'sdadasdasdasdsdasdasss'
+```
+`config.token` is the token used by other services to reach you.
+each `config.other_services` will called on a anonymize requests or on a portability requests (if the user wishes) 
+
+
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
