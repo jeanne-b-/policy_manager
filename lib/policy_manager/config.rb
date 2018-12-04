@@ -6,10 +6,9 @@ module PolicyManager
 
     # who can sign terms and ask for portability
     mattr_accessor :user_resource
-    @@user_resource = User
 
     # sets the locale in the controller and used to fetch the correct term translation 
-    mattr_access :user_language
+    mattr_accessor :user_language
     @@user_language ||= -> (user) { :en }
 
     # used to find the correct user when a portability / anonymize request is asked via API
@@ -61,6 +60,7 @@ module PolicyManager
     def self.setup
       yield self
       self
+      @@user_resource ||= User
       @@current_user_method = [@@current_user_method] unless @@current_user_method.is_a?(Array)
     end
 
