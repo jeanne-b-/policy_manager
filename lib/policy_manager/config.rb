@@ -62,6 +62,7 @@ module PolicyManager
       self
       @@user_resource ||= User
       @@current_user_method = [@@current_user_method] unless @@current_user_method.is_a?(Array)
+      @@other_services = @@other_services.deep_symbolize_keys unless !@@other_services.is_a?(Hash)
     end
 
     def self.is_admin?(user)
