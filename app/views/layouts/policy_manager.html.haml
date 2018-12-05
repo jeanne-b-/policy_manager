@@ -26,6 +26,11 @@
           %h4.font-weight-bold.mx-4= link_to PolicyManager::Term.model_name.human.pluralize, terms_path
           %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human.pluralize, portability_requests_path, {class: can?(:index, PolicyManager::PortabilityRequest) ? '' : 'text-muted'}
           %h4.font-weight-bold.mx-4= link_to PolicyManager::AnonymizeRequest.model_name.human.pluralize, anonymize_requests_path, {class: can?(:index, PolicyManager::AnonymizeRequest) ? '' : 'text-muted'}
+          - if @current_user and (@current_user.try(:login) || @current_user.try(:email))
+            %h4.mx-4
+              = t('logged_as')
+              %b
+                = "#{@current_user.try(:login) || @current_user.try(:email)}"
       .container
         - flash.each do |key, v|
           %div{class: "alert alert-#{key == 'error' ? 'danger' : 'primary'} alert-dismissible fade in show"}

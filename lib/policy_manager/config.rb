@@ -44,6 +44,7 @@ module PolicyManager
     # These other services will be called if a anonymize request is sent
     # or if a user asks for it when requesting portability
     mattr_accessor :other_services
+    @@other_services = {}
 
     # the token used to encrypt user data, give this so other services can call your api
     mattr_accessor :token

@@ -1,4 +1,5 @@
 en:
+  logged_as: "Logged as "
   approve: approve
   deny: deny
   cancel: cancel
