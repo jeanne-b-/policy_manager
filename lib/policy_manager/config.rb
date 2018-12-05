@@ -65,6 +65,10 @@ module PolicyManager
       @@other_services = @@other_services.deep_symbolize_keys unless !@@other_services.is_a?(Hash)
     end
 
+    def self.api_activated?
+      !@@token.blank?
+    end
+
     def self.is_admin?(user)
       @@is_admin_method.call(user) 
     end

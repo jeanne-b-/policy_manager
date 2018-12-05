@@ -8,7 +8,8 @@ module PolicyManager
         t.published?
       end
 
-      can [:api_create, :index], [PortabilityRequest, AnonymizeRequest]
+      can [:index], [PortabilityRequest, AnonymizeRequest]
+      can [:api_create], [PortabilityRequest, AnonymizeRequest] if PolicyManager::Config.api_activated?
 
       return if user.nil?
 
