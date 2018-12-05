@@ -1,5 +1,6 @@
+= disclaimer_text
 .container.pb-4
-  - if PolicyManager::Term.where(state: :published).any?
+  - if @terms.any?
     %h2.font-weight-bold
       = resource_class.model_name.human.pluralize
       - if can? :new, PolicyManager::Term
@@ -39,7 +40,7 @@
     - else
       - @terms.each do |t|
         .col-sm-12
-          %ul.list-group-item.mt-4{t.published? ? {} : {style: 'opacity: 0.7'}}
+          %ul.list-group-item.mt-4
             %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
             %hr
             .d-flex

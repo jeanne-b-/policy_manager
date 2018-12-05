@@ -7,8 +7,10 @@ module PolicyManager
     def collection
       if can? :create, Term
         @terms = Term.all.order(state: :desc)
+      elsif @current_user
+        @terms = Term.published.where(target: [nil, @current_user.class.name])
       else
-        @terms = Term.published
+        @terms = Term.published.where(target: nil)
       end
     end
 

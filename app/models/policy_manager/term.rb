@@ -19,6 +19,8 @@ module PolicyManager
     validates_presence_of :state
     validate :translations_count_valid?
 
+    before_validation :nullify_values
+
     aasm column: :state do
       state :draft, initial: true
       state :published
@@ -40,6 +42,10 @@ module PolicyManager
     end
 
     private
+
+    def nullify_values
+      self.target = nil if self.target.blank?
+    end
 
     def translations_count_valid?
       self.errors.add(:terms_translations, :translations_missing) and return false unless terms_translations.reject(&:marked_for_destruction?).count > 0
