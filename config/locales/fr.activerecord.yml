@@ -19,7 +19,7 @@ fr:
   classy_enum:
     term_kind:
       mandatory: obligatoire - requiert une signature
-      optional: optionel - ne requiert pas de signature
+      optional: optionnel - ne requiert pas de signature
   activerecord:
     errors:
       models:
