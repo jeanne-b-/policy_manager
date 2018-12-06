@@ -56,7 +56,7 @@ module PolicyManager
     def async_call_service(service_name)
       service = Config.other_services[service_name.to_sym]
       if service.respond_to?('[]', :host) # services must have a host in configuration file
-        response = HTTParty.post(service[:host] + Config.anonymize_path, body: encrypted_params_for_service(service_name)).response
+        response = HTTParty.post(service[:host] + Config.anonymize_path, body: encrypted_params_for_service(service_name), timeout: 1.minute).response
       else
         return false
       end
@@ -81,19 +81,15 @@ module PolicyManager
       hash = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha512'), token, user_identifier)
       {user: user_identifier, hash: hash}
     end
-   
+
     def encrypted_params_for_service(service_name)
       user_identifier = owner.send(PolicyManager::Config.finder)
-      PortabilityRequest.encrypted_params(user_identifier, Config.other_services[service_name.to_sym][:token])
+      AnonymizeRequest.encrypted_params(user_identifier, Config.other_services[service_name.to_sym][:token])
     end
 
     def my_encrypted_params
       user_identifier = owner.send(PolicyManager::Config.finder)
-      PortabilityRequest.encrypted_params(user_identifier)
-    end
-
-    def notify_user
-      PortabilityMailer.completed(self.id).deliver_now
+      AnonymizeRequest.encrypted_params(user_identifier)
     end
 
     def anonymize

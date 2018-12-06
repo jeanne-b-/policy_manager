@@ -63,7 +63,7 @@ module PolicyManager
     def async_call_service(service_name)
       service = Config.other_services[service_name.to_sym]
       if service.respond_to?('[]', :host) # services must have a host in configuration file
-        response = HTTParty.post(service[:host] + Config.portability_path, body: encrypted_params_for_service(service_name)).response
+        response = HTTParty.post(service[:host] + Config.portability_path, body: encrypted_params_for_service(service_name), timeout: 1.minute).response
       else
         return false
       end
