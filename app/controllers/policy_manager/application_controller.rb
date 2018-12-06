@@ -13,6 +13,7 @@ module PolicyManager
     def set_locale
       locale = params[:locale]
       locale ||= PolicyManager::Config.user_language.call(@current_user) if @current_user
+      locale ||= I18n.locale
       locale ||= :en
       I18n.locale = locale
     end
