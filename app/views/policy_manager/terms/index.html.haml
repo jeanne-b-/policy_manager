@@ -23,7 +23,8 @@
               %hr
               .d-flex
                 .col-8
-                  = l(t.updated_at)
+                  = t 'last_updated_at'
+                  = l t.terms_translation.updated_at.to_date
                   = t.kind
                   = t.state
                   - if t.signed_by? @current_user
@@ -42,9 +43,10 @@
           %ul.list-group-item.mt-4
             %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
             %hr
-            .d-flex
+            .d-flex.row
               .col-6
-                = l(t.updated_at)
+                = t 'last_updated_at'
+                = l t.terms_translation.updated_at.to_date
                 - if t.signed_by? @current_user
                   %span.text-success
                     = PolicyManager::UsersTerm.human_attribute_name(:signed_at)

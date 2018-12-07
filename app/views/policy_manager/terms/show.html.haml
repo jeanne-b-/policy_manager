@@ -10,3 +10,6 @@
     = translation.title
 
   = translation.content_html.html_safe
+  %hr
+  = t 'last_updated_at'
+  = l translation.updated_at.to_date
