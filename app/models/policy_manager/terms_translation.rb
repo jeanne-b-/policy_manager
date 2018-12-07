@@ -17,11 +17,10 @@ module PolicyManager
     end
 
     def self.renderer
-      @renderer ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+      @renderer ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(with_toc_data: true),
                                             autolink: true,
                                             tables: true,
                                             hard_wrap: true,
-                                            with_toc_data: true,
                                             filter_html: true)
     end
 

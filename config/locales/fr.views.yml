@@ -1,5 +1,6 @@
 fr:
   logged_as: "Logué en tant que "
+  last_updated_at: 'Date de dernière mise à jour :'
   approve: approuver
   deny: refuser
   cancel: annuler

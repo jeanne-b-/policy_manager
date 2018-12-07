@@ -6,7 +6,10 @@
   - if can? :sign, resource
     = button_to t('policy_manager_sign'), sign_term_path(resource), class: 'btn btn-success'
   - translation = resource.terms_translation
-  %h2.font-weight-bold
+  %h2.font-weight-bold.mb-4
     = translation.title
-
-  = translation.content_html.html_safe
+  .mt-4
+    = translation.content_html.html_safe
+  %hr
+  = t 'last_updated_at'
+  = l translation.updated_at.to_date

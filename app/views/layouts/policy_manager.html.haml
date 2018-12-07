@@ -1,24 +1,23 @@
 !!! 5
 %html(lang="en"){style: "min-height: 100%;"}
   %head
-    = cache ['generic', 'head', 'policies'] do
-      %meta(charset="utf-8")
-      %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-      %meta(name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0")
-      %meta{:content => "yes", :name => "mobile-web-app-capable"}
-      %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
-      %meta{:content => "translucent-black", :name => "apple-mobile-web-app-status-bar-style"}
-      %meta{:content => "Intranet 42", :name => "apple-mobile-web-app-title"}
-      %meta{:content => "on", "http-equiv" => "cleartype"}
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0")
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
+    %meta{:content => "translucent-black", :name => "apple-mobile-web-app-status-bar-style"}
+    %meta{:content => "Intranet 42", :name => "apple-mobile-web-app-title"}
+    %meta{:content => "on", "http-equiv" => "cleartype"}
 
-      %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
-      %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
-      = javascript_include_tag "policy_manager/application", debug: false
-      = javascript_include_tag "//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
-      = javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-      = stylesheet_link_tag PolicyManager::Config.stylesheet, :media => "all"
-      = stylesheet_link_tag "policy_manager/application", :media => "all"
+    %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
+    %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
+    = javascript_include_tag "policy_manager/application", debug: false
+    = javascript_include_tag "//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
+    = javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    = stylesheet_link_tag PolicyManager::Config.stylesheet, :media => "all"
+    = stylesheet_link_tag "policy_manager/application", :media => "all"
     = csrf_meta_tags
     %body.text-dark.bg-white.h-100.mb-0.pb-4{style: "background: #fff; min-height: 100%;"}
       .jumbotron.bg-white.py-3
