@@ -51,4 +51,4 @@
                     = l @current_user.users_terms.where(term: t).first.signed_at
               .col-6.d-flex.flex-row-reverse
                 - if can? :sign, t
-                  = button_to t('sign'), sign_term_path(t), class: 'btn btn-success'
+                  = button_to t('policy_manager_sign'), sign_term_path(t), class: 'btn btn-success'
