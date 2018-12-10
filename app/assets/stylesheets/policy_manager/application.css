@@ -5,3 +5,20 @@ img {
 .select {
   display: block !important;
 }
+
+table {
+  border: solid 1px #dadada;
+}
+
+table > thead {
+  border-bottom: solid 1px;
+}
+table > tbody > tr {
+  text-align: left !important;
+  border-bottom: solid 1px #dadada;
+}
+table > tbody > tr > td,
+table > thead > tr > th {
+  text-align: left !important;
+  padding: 10px;
+}
