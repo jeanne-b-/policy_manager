@@ -7,3 +7,7 @@ fr:
         requested_by_api: Vous avez fait une demande de portabilité sur l'un de nos services.
         content: Vos données sont pretes a etre télecharger.
         download_link: télecharger
+      anonymize_requested:
+        subject: Vous nous avez fait une demande d'anonymisation
+        content: Une demande d'anonymisation a été faite en votre nom sur notre site
+        link: vous pouvez annuler ou suivre votre demande ici

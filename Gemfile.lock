@@ -13,9 +13,14 @@ PATH
   specs:
     policy_manager (0.1.0)
       aasm
+      carrierwave
       classy_enum
+      cocoon
+      inherited_resources
+      jquery-rails
       redcarpet
       rubyzip
+      turbolinks
       zip-zip
 
 GEM
@@ -96,6 +101,10 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    jquery-rails (4.3.3)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     json (2.1.0)
     loofah (2.2.3)
       crass (~> 1.0.2)
@@ -158,6 +167,9 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    turbolinks (5.2.0)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     websocket-driver (0.6.5)

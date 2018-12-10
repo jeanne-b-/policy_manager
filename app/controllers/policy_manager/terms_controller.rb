@@ -11,6 +11,7 @@ module PolicyManager
         @terms = Term.published.where(target: [nil, @current_user.class.name])
       else
         @terms = Term.published.where(target: nil)
+        @scoped_terms = Term.published.where.not(target: nil).group(:target).count
       end
     end
 

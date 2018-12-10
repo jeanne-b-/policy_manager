@@ -7,7 +7,7 @@ PolicyManager::Engine.routes.draw do
     post :archive, on: :member
   end
 
-  resources :portability_requests do
+  resources :portability_requests, only: [:index, :new, :create] do
     get :admin, on: :collection
 
     post :cancel, on: :member
@@ -16,7 +16,7 @@ PolicyManager::Engine.routes.draw do
     post :api_create, on: :collection
   end
 
-  resources :anonymize_requests do
+  resources :anonymize_requests, only: [:index, :new, :create] do
     get :admin, on: :collection
 
     post :cancel, on: :member

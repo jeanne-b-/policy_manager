@@ -7,3 +7,7 @@ en:
         requested_by_user: You have made a data portability request
         requested_by_api: You have made a data portability request on own of our services.
         download_link: download
+      anonymize_requested:
+        subject: You have asked that we anonymize your data
+        content: An anymization request has been made on our platform.
+        link: you can cancel or keep track of your request here.
