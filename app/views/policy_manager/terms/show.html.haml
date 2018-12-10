@@ -1,10 +1,4 @@
 .container
-  - if resource.signed_by? @current_user
-    %span.text-success
-      = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
-      = l @current_user.users_terms.where(term: resource).first.signed_at
-  - if can? :sign, resource
-    = button_to t('policy_manager_sign'), sign_term_path(resource), class: 'btn btn-success'
   - translation = resource.terms_translation
   %h2.font-weight-bold.mb-4
     = translation.title
@@ -13,3 +7,11 @@
   %hr
   = t 'last_updated_at'
   = l translation.updated_at.to_date
+
+  %hr
+  - if resource.signed_by? @current_user
+    %span.text-success
+      = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
+      = l @current_user.users_terms.where(term: resource).first.signed_at
+  - if can? :sign, resource
+    = button_to t('policy_manager_sign'), sign_term_path(resource), class: 'btn btn-success w-100'
