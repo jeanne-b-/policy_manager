@@ -43,25 +43,30 @@ module PolicyManager
     end
 
     def notify_user
+      return unless self.requested_by.nil?
       PortabilityMailer.anonymize_requested(self.id).deliver_now
     end
 
     def create_on_other_services
       self.run! unless self.running?
+      identifier = owner.send(PolicyManager::Config.finder)
 
       Config.other_services.each do |name, _|
-        call_service(name)
+        call_service(name, identifier)
       end
     end
 
-    def call_service(service)
-      perform_async(service)
+    def call_service(service, identifier)
+      perform_async({service: service, user: identifier})
     end
 
-    def async_call_service(service_name)
+    def async_call_service(opts)
+      service_name = opts['service']
+      identifier = opts['user']
       service = Config.other_services[service_name.to_sym]
+      body = AnonymizeRequest.encrypted_params(identifier, Config.other_services[service_name.to_sym][:token])
       if service.respond_to?('[]', :host) # services must have a host in configuration file
-        response = HTTParty.post(service[:host] + Config.anonymize_path, body: encrypted_params_for_service(service_name), timeout: 1.minute).response
+        response = HTTParty.post(service[:host] + Config.anonymize_path, body: body, timeout: 1.minute).response
       else
         return false
       end
