@@ -52,7 +52,7 @@ module PolicyManager
 
     def approve
       resource.approve!
-      redirect_to anonymize_requests_path
+      redirect_to admin_anonymize_requests_path
     end
 
     def cancel
@@ -62,7 +62,7 @@ module PolicyManager
 
     def deny
       resource.deny!
-      redirect_to anonymize_requests_path
+      redirect_to admin_anonymize_requests_path
     end
   end
 end

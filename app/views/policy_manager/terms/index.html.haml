@@ -11,27 +11,37 @@
     .text-center
       - if can? :new, PolicyManager::Term
         = link_to t('new'), new_term_path, class: 'btn btn-primary m-auto'
+  - if @scoped_terms.try(:any?)
+    .list-group
+      .text-center.font-weight-bold
+        - @scoped_terms.map do |target, count|
+          = count
+          = t('policy_manager.terms.form.target_label', target: target.constantize.model_name.human.pluralize).underscore
+
   .row
     - if PolicyManager::Config.is_admin?(@current_user)
       - @terms.group_by(&:state).each do |state, terms|
-        %h3.font-weight-bold
+        %h3.font-weight-bold.col-sm-12
           = t(".#{state}")
         - terms.each do |t|
           .col-sm-12
             %ul.list-group-item.mt-4{t.published? ? {} : {style: 'opacity: 0.7'}}
               %h3.font-weight-bold= link_to t.terms_translation.title, term_path(t)
               %hr
-              .d-flex
+              .d-flex.row
                 .col-8
-                  = t 'last_updated_at'
-                  = l t.terms_translation.updated_at.to_date
-                  = t.kind
-                  = t.state
-                  - if t.signed_by? @current_user
-                    %span.text-success
-                      = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
-                      = l @current_user.users_terms.where(term: t).first.signed_at
-                .col-4.d-flex.flex-row-reverse
+                  .col-12
+                    = t 'last_updated_at'
+                    = l t.terms_translation.updated_at.to_date
+                    - if t.signed_by? @current_user
+                      %span.text-success
+                        = PolicyManager::UsersTerm.human_attribute_name(:signed_at)
+                        = l @current_user.users_terms.where(term: t).first.signed_at
+                  .col-12
+                    = t.kind
+                    = t.state
+                    = t.target
+                .col-4.d-flex.align-items-center
                   - if can? :sign, t
                     = button_to t('policy_manager_sign'), sign_term_path(t), class: 'btn btn-success'
                   = button_to t('publish'), publish_term_path(t), class: 'btn btn-success' if can? :publish, t
