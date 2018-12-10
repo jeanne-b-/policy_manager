@@ -1,6 +1,6 @@
 .container.pb-4
   - if @terms.any?
-    %h2.font-weight-bold
+    %h2.font-weight-bold.text-center
       = resource_class.model_name.human.pluralize
       - if can? :new, PolicyManager::Term
         .float-right

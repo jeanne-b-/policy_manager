@@ -19,7 +19,7 @@ en:
       terms_translation_fields:
         remove_translation: Remove translation
       form:
-        target_label: Only accessible to authentified %{target}
+        target_label: Only accessible to authenticated %{target}
         add_translation: Add translation
       index:
         published: Published terms
