@@ -21,10 +21,8 @@
             %i= p.aasm.human_state
           .col-sm-4
             .btn-group.float-right
-              - if p.try(:attachement_url)
-                = link_to t('.anonymize'), p.attachement_url, class: 'btn btn-default'
               - if can? :cancel, p
-                = link_to t('cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger', method: :post
+                = button_to t('cancel'), cancel_anonymize_request_path(p), class: 'btn btn-danger'
 - else
   .container.text-center
     %h2.font-weight-bold

@@ -5,6 +5,7 @@ module PolicyManager
     include AASM
 
     belongs_to :owner, polymorphic: true
+    after_create :notify_user
 
     validate :only_one_pending_request, on: :create
 
@@ -39,6 +40,10 @@ module PolicyManager
       event :done do
         transitions :from => :running, :to => :done
       end
+    end
+
+    def notify_user
+      PortabilityMailer.anonymize_requested(self.id).deliver_now
     end
 
     def create_on_other_services
