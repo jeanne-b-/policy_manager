@@ -63,7 +63,11 @@ module PolicyManager
       self
       @@user_resource ||= User
       @@current_user_method = [@@current_user_method] unless @@current_user_method.is_a?(Array)
-      @@other_services = @@other_services.deep_symbolize_keys unless !@@other_services.is_a?(Hash)
+      if @@other_services.is_a?(Hash)
+        @@other_services = @@other_services.deep_symbolize_keys
+      else
+        @@other_services = {}
+      end
     end
 
     def self.api_activated?
