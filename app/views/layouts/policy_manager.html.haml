@@ -13,8 +13,8 @@
     %link{:rel => "icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
     %link{:rel => "shortcut icon", :type => "image/svg", :href => asset_url("42_logo_black.png")}
     = javascript_include_tag "policy_manager/application", debug: false
-    = stylesheet_link_tag PolicyManager::Config.stylesheet, :media => "all"
     = stylesheet_link_tag "policy_manager/application", :media => "all"
+    = stylesheet_link_tag PolicyManager::Config.stylesheet, :media => "all"
     = csrf_meta_tags
     %body.text-dark.bg-white.h-100.mb-0.pb-4{style: "background: #fff; min-height: 100%;"}
       .jumbotron.bg-white.py-3
