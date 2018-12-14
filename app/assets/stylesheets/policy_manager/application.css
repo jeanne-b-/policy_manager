@@ -1,4 +1,4 @@
-//= require_tree .
+//= require 'bootstrap_4'
 
 img {
   max-width: 100%;
@@ -24,3 +24,4 @@ table > thead > tr > th {
   text-align: left !important;
   padding: 10px;
 }
+
