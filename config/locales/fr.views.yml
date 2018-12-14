@@ -25,6 +25,9 @@ fr:
         published: Publiées
         draft: Brouillons
         archived: Archivées
+    correction_requests:
+      index:
+        content: Pour exercer votre droit de modification sur vos données personnelles, vous avez la possibilité de passer par les formulaires accessibles via votre compte ou envoyer votre demande à %{email}
     portability_requests:
       index:
         download: Télécharger mes données

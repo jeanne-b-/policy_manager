@@ -1,6 +1,9 @@
 PolicyManager::Engine.routes.draw do
   root 'terms#index'
 
+  resources :correction_requests, only: :index do 
+  end
+
   resources :terms do
     post :sign, on: :member
     post :publish, on: :member

@@ -18,10 +18,11 @@
     = csrf_meta_tags
     %body.text-dark.bg-white.h-100.mb-0.pb-4{style: "background: #fff; min-height: 100%;"}
       .jumbotron.bg-white.py-3
-        .container.d-flex.justify-content-center
+        .container.flex.flex-column.justify-content-center.flex-sm-row.text-center
           %h4.font-weight-bold.mx-4= link_to PolicyManager::Term.model_name.human.pluralize, terms_path
-          %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human.pluralize, portability_requests_path, {class: can?(:index, PolicyManager::PortabilityRequest) ? '' : 'text-muted'}
-          %h4.font-weight-bold.mx-4= link_to PolicyManager::AnonymizeRequest.model_name.human.pluralize, anonymize_requests_path, {class: can?(:index, PolicyManager::AnonymizeRequest) ? '' : 'text-muted'}
+          %h4.font-weight-bold.mx-4= link_to PolicyManager::PortabilityRequest.model_name.human, portability_requests_path, {class: can?(:index, PolicyManager::PortabilityRequest) ? '' : 'text-muted'}
+          %h4.font-weight-bold.mx-4= link_to PolicyManager::AnonymizeRequest.model_name.human, anonymize_requests_path, {class: can?(:index, PolicyManager::AnonymizeRequest) ? '' : 'text-muted'}
+          %h4.font-weight-bold.mx-4= link_to PolicyManager::CorrectionRequest.model_name.human, correction_requests_path, {class: can?(:index, PolicyManager::CorrectionRequest) ? '' : 'text-muted'}
           - if @current_user and (@current_user.try(:login) || @current_user.try(:email))
             %h4.mx-4
               = t('logged_as')

@@ -25,6 +25,9 @@ en:
         published: Published terms
         draft: Draft terms
         archived: Archived terms
+    correction_requests:
+      index:
+        content: You may exercise your right to correction through the forms accessible via your account or by sending a request to %{email}
     portability_requests:
       index:
         download: download my data

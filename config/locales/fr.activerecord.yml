@@ -36,8 +36,9 @@ fr:
             owner_id:
               not_unique: Vous avez déjà une demande en cours
     models:
-      policy_manager/portability_request: Demandes de portabilité
-      policy_manager/anonymize_request: Demandes d'anonymisation
+      policy_manager/portability_request: Demandes d'accès et de portabilité
+      policy_manager/anonymize_request: Demandes d'effacement et d'anonymisation
+      policy_manager/correction_request: Demandes de modification
       policy_manager/term: Conditions et Politiques
       policy_manager/users_term: Signature de Conditions et Politiques
       policy_manager/terms_translation: Traductions

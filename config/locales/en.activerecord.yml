@@ -36,8 +36,9 @@ en:
             owner_id:
               not_unique: You already have a pending request
     models:
-      policy_manager/portability_request: Portability requests
-      policy_manager/anonymize_request: Anonymization requests
+      policy_manager/portability_request: Access and portability requests
+      policy_manager/anonymize_request: Deletion and anonymization requests
+      policy_manager/correction_request: Correction requests
       policy_manager/term: Terms and Conditions
       policy_manager/users_term: Terms and Conditions signature
       policy_manager/terms_translation: Translations

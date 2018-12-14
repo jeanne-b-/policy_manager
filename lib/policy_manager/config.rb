@@ -27,6 +27,10 @@ module PolicyManager
     mattr_accessor :from_email
     @@from_email = 'privacy@42.fr'
 
+    # correction requests will be sent to this email
+    mattr_accessor :dpo_email
+    @@dpo_email = 'dpo@42.fr'
+
     # the method used to check if a user can ask for anonymization
     mattr_accessor :can_ask_anonymization
     @@can_ask_anonymization = -> (user) { false }

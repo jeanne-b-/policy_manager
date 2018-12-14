@@ -1,0 +1,13 @@
+- if @current_user
+  .container.text-center
+    %h2.font-weight-bold
+      = PolicyManager::CorrectionRequest.model_name.human
+    %p.font-weight-bold
+      = t('.content', email: PolicyManager::Config.dpo_email)
+- else
+  .container.text-center
+    %h2.font-weight-bold
+      = PolicyManager::CorrectionRequest.model_name.human
+    %p.font-weight-bold
+      = t('policy_manager_log_in')
+
