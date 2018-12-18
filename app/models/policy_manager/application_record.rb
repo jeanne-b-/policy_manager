@@ -1,5 +1,6 @@
 module PolicyManager
   class ApplicationRecord < ActiveRecord::Base
+    include GlobalID::Identification
     self.abstract_class = true
 
     def perform_async *args

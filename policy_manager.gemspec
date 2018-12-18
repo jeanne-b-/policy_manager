@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'inherited_resources'
   spec.add_dependency "redcarpet"
   spec.add_dependency 'jquery-rails'
+  spec.add_dependency 'globalid'
   spec.add_dependency 'turbolinks'
   spec.add_dependency "zip-zip"
 end

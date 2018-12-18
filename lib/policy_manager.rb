@@ -11,6 +11,7 @@ require "policy_manager/registery"
 require "policy_manager/config"
 require "classy_enum"
 require "carrierwave"
+require "globalid"
 
 module PolicyManager
   # Your code goes here...
