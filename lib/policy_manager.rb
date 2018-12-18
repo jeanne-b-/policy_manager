@@ -12,6 +12,7 @@ require "policy_manager/config"
 require "classy_enum"
 require "carrierwave"
 require "globalid"
+require "async_object"
 
 module PolicyManager
   # Your code goes here...
