@@ -1,4 +1,4 @@
-]require "aasm"
+require "aasm"
 require 'zip'
 
 module PolicyManager
