@@ -43,7 +43,8 @@ module PolicyManager
     end
 
     def notify_user
-      return unless self.requested_by.nil?
+      return if self.requested_by or !defined?(Sidekiq)
+
       PortabilityMailer.anonymize_requested(self.id).deliver_now
     end
 
@@ -57,7 +58,11 @@ module PolicyManager
     end
 
     def call_service(service, identifier)
-      perform_async({service: service, user: identifier})
+      if defined?(Sidekiq)
+        perform_async({service: service, user: identifier})
+      else
+        async_call_service({'service' => service, 'user' => identifier})
+      end
     end
 
     def async_call_service(opts)
@@ -103,7 +108,11 @@ module PolicyManager
     end
 
     def anonymize
-      perform_async
+      if defined?(Sidekiq)
+        perform_async
+      else
+        async_anonymize
+      end
     end
 
     def async_anonymize

@@ -1,4 +1,4 @@
-require "aasm"
+]require "aasm"
 require 'zip'
 
 module PolicyManager
@@ -57,7 +57,11 @@ module PolicyManager
     end
 
     def call_service(service)
-      perform_async(service)
+      if defined?(Sidekiq)
+        perform_async(service)
+      else
+        async_call_service(service)
+      end
     end
 
     def async_call_service(service_name)
@@ -104,7 +108,11 @@ module PolicyManager
     end
 
     def generate_json
-      perform_async
+      if defined?(Sidekiq)
+        perform_async
+      else
+        async_generate_json
+      end
     end
 
     def async_generate_json
