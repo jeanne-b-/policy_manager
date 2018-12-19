@@ -9,11 +9,11 @@ module PolicyManager
 
     # sets the locale in the controller and used to fetch the correct term translation 
     mattr_accessor :user_language
-    @@user_language ||= -> (user) { :en }
+    @@user_language = -> (user) { :en }
 
     # used to find the correct user when a portability / anonymize request is asked via API
     mattr_accessor :finder
-    @@finder ||= :id
+    @@finder = :id
 
     # use your application stylesheet by default
     mattr_accessor :stylesheet
@@ -30,6 +30,10 @@ module PolicyManager
     # correction requests will be sent to this email
     mattr_accessor :dpo_email
     @@dpo_email = 'dpo@42.fr'
+
+    # used to address the user in emails
+    mattr_accessor :user_name_method
+    @@user_name_method = :login
 
     # the method used to check if a user can ask for anonymization
     mattr_accessor :can_ask_anonymization

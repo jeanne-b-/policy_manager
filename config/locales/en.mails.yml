@@ -1,13 +1,29 @@
 en:
+  layouts:
+    policy_manager_admin_mailer:
+      hello: Hello
+      contact: ''
+    policy_manager_mailer:
+      hello: Hello, %{user_name}
+      contact: If you have any questions concerning the way we treat or handle your data, you can consult <a href=%{link}>our legal documents</a> or contact %{email}.
   policy_manager:
+    policy_manager_admin_mailer:
+      anonymize_requested:
+        subject: A new anonymization request has been made.
+        content: A new anonymization request has been made.
+        link: You can <a href=%{link}>consult requests waiting for approval</a>
     mails:
       completed:
-        subject: Your data portability request is complete
-        content: Your data is ready and can be downloaded
-        requested_by_user: You have made a data portability request
-        requested_by_api: You have made a data portability request on own of our services.
-        download_link: download
+        subject: Your portability request
+        requested_by_user: A portability request has been made on our site from your account.
+        requested_by_api: A portability request has been made on one of our services from your account.
+        content: Your data is ready and can be downloaded.
+        download_link: Download my data
       anonymize_requested:
-        subject: You have asked that we anonymize your data
-        content: An anymization request has been made on our platform.
-        link: you can cancel or keep track of your request here.
+        subject: An anonymization request has been made
+        content: An anonymization request has been made on our site from your account.
+        link: You can cancel or keep track of your request <a href=%{link}>here</a>.
+      anonymize_denied:
+        subject: Your anonymization request has been denied
+        content: You made a anonymization request on the %{date}, this request has been denied by an administrator.</br>If you have any questions, you can contact %{email}.
+        link: You can make a new request <a href=%{here}>ici</a>.

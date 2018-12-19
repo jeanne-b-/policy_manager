@@ -5,7 +5,7 @@ module PolicyManager
     include AASM
 
     belongs_to :owner, polymorphic: true
-    after_create :notify_user
+    after_create :notify_created
 
     validate :only_one_pending_request, on: :create
 
@@ -29,7 +29,7 @@ module PolicyManager
         transitions from: :waiting_for_approval, :to => :canceled
       end
 
-      event :deny do
+      event :deny, after_commit: :notify_denied do
         transitions :from => :waiting_for_approval, :to => :denied
       end
   
@@ -42,9 +42,14 @@ module PolicyManager
       end
     end
 
-    def notify_user
+    def notify_created
       return unless self.requested_by.nil?
-      PortabilityMailer.anonymize_requested(self.id).deliver_now
+      PolicyManagerMailer.anonymize_requested(self.id).deliver_now
+      PolicyManagerAdminMailer.anonymize_requested(self.id).deliver_now
+    end
+
+    def notify_denied
+      PolicyManagerMailer.anonymize_denied(self.id).deliver_now
     end
 
     def create_on_other_services

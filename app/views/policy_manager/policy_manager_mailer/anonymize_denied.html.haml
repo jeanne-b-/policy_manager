@@ -1,0 +1,4 @@
+%p
+  = t('policy_manager.mails.anonymize_denied.content', date: l(@anonymize_request.created_at.to_date), email: PolicyManager::Config.dpo_email).html_safe
+%p
+  = t('policy_manager.mails.anonymize_denied.link', link: @link).html_safe

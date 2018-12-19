@@ -1,13 +1,28 @@
 fr:
+  layouts:
+    policy_manager_admin_mailer:
+      hello: Bonjour,
+      contact: ''
+    policy_manager_mailer:
+      hello: Bonjour %{user_name},
+      contact: Pour toute question concernant la façon dont nous traitons ou gérons vos données personnelles, vous pouvez consulter <a href=%{link}>nos documents légaux</a> ou contacter %{email}.
   policy_manager:
+    policy_manager_admin_mailer:
+      anonymize_requested:
+        content: Une nouvelle demande d'anonymisation a été effectuée.
+        link: Vous pouvez <a href=%{link}>consulter les demandes en attente</a>
     mails:
       completed:
-        subject: Votre demande de portabilité est complete.
-        requested_by_user: Vous nous avez fait une demande de portabilité.
-        requested_by_api: Vous avez fait une demande de portabilité sur l'un de nos services.
-        content: Vos données sont pretes a etre télecharger.
-        download_link: télecharger
+        subject: Votre demande de portabilité
+        requested_by_user: Une demande de portabilité a été effectuée en votre nom sur notre site.
+        requested_by_api: Une demande de portabilité a été effectuée en votre nom sur l'un de nos services.
+        content: Vos données sont prêtes a être télechargées.
+        download_link: Télécharger mes données
       anonymize_requested:
-        subject: Vous nous avez fait une demande d'anonymisation
-        content: Une demande d'anonymisation a été faite en votre nom sur notre site
-        link: vous pouvez annuler ou suivre votre demande ici
+        subject: Une demande d'anonymisation a été effectuée
+        content: Une demande d'anonymisation a été effectuée en votre nom sur notre site.
+        link: Vous pouvez annuler ou suivre votre demande <a href=%{link}>ici</a>.
+      anonymize_denied:
+        subject: Votre demande d'anonymisation a été refusée
+        content: Vous nous avez fait une demande d'anonymisation le %{date}, cette demande a été refusée par un administrateur.</br>En cas de question concernant ce refus, vous pouvez contacter %{email}.
+        link: Vous pouvez ré-effectuer une demande <a href=%{link}>ici</a>.
