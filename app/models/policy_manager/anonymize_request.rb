@@ -62,7 +62,11 @@ module PolicyManager
     end
 
     def call_service(service, identifier)
-      perform_async({service: service, user: identifier})
+      if defined?(Sidekiq)
+        perform_async({service: service, user: identifier})
+      else
+        async_call_service({'service' => service, 'user' => identifier})
+      end
     end
 
     def async_call_service(opts)
@@ -108,7 +112,11 @@ module PolicyManager
     end
 
     def anonymize
-      perform_async
+      if defined?(Sidekiq)
+        perform_async
+      else
+        async_anonymize
+      end
     end
 
     def async_anonymize

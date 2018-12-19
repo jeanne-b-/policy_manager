@@ -1,8 +1,8 @@
 class PolicyManagerWorker
-  include Sidekiq::Worker
+  include Sidekiq::Worker if defined?(Sidekiq)
 
-  def perform gid, action, options = {}
-    object = ::GlobalID::Locator.locate id
+  def perform gid, key, action, options = {}
+    object = ::GlobalID::Locator.locate gid
     object.send(action, *options)
   end
 end
