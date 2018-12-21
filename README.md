@@ -61,7 +61,7 @@ scale_teams: {finder: -> (user) { ScaleTeam.where(user_id: user.id) }}
 
 To change the default serialization, you can add a specific serializer to your app:
 ```
-$ rails generate policy_manager:portability_serializer message
+$ bin/rails generate policy_manager:serializer user
 ```
 Will generate a serializer for the class Message, with all its attributes and its `belongs_to` and `has_many` relations.
 Don't forget to review it, and make necessary changes.
