@@ -1,9 +1,11 @@
 require 'rails/generators'
+require "rails/generators/active_record"
+require 'rails/generators/named_base'
 
 module PolicyManager
-  module Generators
-    class PortabilitySerializerGenerator < ::Rails::Generators::NamedBase
-            source_root File.expand_path('../../templates', __FILE__)
+    class SerializerGenerator < ::Rails::Generators::NamedBase
+      include ::Rails::Generators
+      source_root File.expand_path('../../../templates', __FILE__)
 
       argument :attributes, type: :array, default: [], banner: 'field:type field:type'
 
@@ -45,6 +47,5 @@ module PolicyManager
           'ActiveModel::Serializer'
         end
       end
-    end
   end
 end
