@@ -45,8 +45,8 @@ en:
         anonymize: anonymize my data
         new: make an anonymization request
       new:
-        title: You are about to request that we anonymize your data
-        other_services: This request will automatically be replicated on our other services
-        request_will_be_approved: Before anonymizing your data, an admin has to approve your request
-        modal_content: You are about to delete all your data on our platform. This change is permanent and irrevocable.
+        title: You are about to request an account anonymization
+        other_services: This request will automatically be replicated on our other services.
+        request_will_be_approved: Before anonymizing your data, an admin has to approve your request.
+        modal_content: "You are about to delete all your data on our platform. Be careful: you won't be able to access our platform or services anymore. This change is permanent and irrevocable."
         cancel: cancel

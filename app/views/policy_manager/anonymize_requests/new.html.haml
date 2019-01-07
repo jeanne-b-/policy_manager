@@ -5,7 +5,7 @@
     %p= t('.modal_content').html_safe
     - unless PolicyManager::Config.skip_portability_request_approval
       %p= t('.request_will_be_approved')
-    - if PolicyManager::Config.other_services
+    - if PolicyManager::Config.other_services.any?
       %p
         = t('.other_services')
         (

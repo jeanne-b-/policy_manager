@@ -46,7 +46,7 @@ fr:
         new: Faire une demande d'anonymisation
       new:
         title: Vous êtes sur le point de faire une demande d'anonymisation
-        other_services: Cette demande sera automatiquement répliquée sur nos autres services
-        request_will_be_approved: Avant d'anonymiser vos données, un administrateur doit valider votre demande
-        modal_content: Vous êtes sur le point d'effacer l'intégralité de vos données sur notre plateforme. Ce changement est définitif et irrévocable.
+        other_services: Cette demande sera automatiquement répliquée sur nos autres services.
+        request_will_be_approved: Avant d'anonymiser vos données, un administrateur doit valider votre demande.
+        modal_content: "Vous êtes sur le point d'effacer l'intégralité de vos données sur notre plateforme. Attention : vous ne serez plus en mesure d'accéder à cette plateforme ou à nos services. Ce changement est définitif et irrévocable."
         cancel: Annuler
