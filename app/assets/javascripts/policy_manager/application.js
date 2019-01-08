@@ -26,6 +26,13 @@ myMarked.setOptions({
 });
 
 function init() {
+  Array.from($("textarea.marked")).forEach(function(input) {
+    $(input).on('keyup', function() {
+      var scroll_height = this.scrollHeight;
+    
+      $(this).css('height', scroll_height + 'px');
+    });
+  });
 
   // marked content
   Array.from(document.getElementsByClassName('marked-content')).forEach(function(elem) {
@@ -37,16 +44,21 @@ function init() {
     var input;
     var e;
     input = elem.getElementsByTagName('textarea')[0];
-    console.log(input);
     e = input.addEventListener('keyup', function(input) {
       value = elem.getElementsByTagName('textarea')[0].value;
       elem.getElementsByClassName('markdown-preview')[0].innerHTML = myMarked(value);
     });
     input.dispatchEvent(new Event('keyup'));
   });
+
 }
 
-document.addEventListener("turbolinks:load", function() {
+
+$(document).ready(function() {
+  init();
+});
+
+$(document).on("turbolinks:load", function() {
   init();
 });
 
