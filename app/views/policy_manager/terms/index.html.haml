@@ -46,7 +46,7 @@
                     = button_to t('policy_manager_sign'), sign_term_path(t), class: 'btn btn-success'
                   = button_to t('publish'), publish_term_path(t), class: 'btn btn-success' if can? :publish, t
                   = button_to t('archive'), archive_term_path(t), class: 'btn btn-danger' if can? :archive, t
-                  = link_to t('edit'), edit_term_path(t), class: 'btn btn-warning' if can? :archive, t
+                  = link_to t('edit'), edit_term_path(t), class: 'btn btn-warning' if can? :edit, t
     - else
       - @terms.each do |t|
         .col-sm-12
