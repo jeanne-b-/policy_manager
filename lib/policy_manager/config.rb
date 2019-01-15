@@ -65,7 +65,6 @@ module PolicyManager
     mattr_accessor :anonymize_path
     @@anonymize_path = "/legal/anonymize_requests/api_create"
 
-
     def self.setup
       yield self
       self
