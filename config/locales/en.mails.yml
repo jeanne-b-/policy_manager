@@ -12,13 +12,26 @@ en:
         subject: A new anonymization request has been made.
         content: A new anonymization request has been made.
         link: You can <a href=%{link}>consult requests waiting for approval</a>
-    mails:
-      completed:
-        subject: Your portability request
-        requested_by_user: A portability request has been made on our site from your account.
-        requested_by_api: A portability request has been made on one of our services from your account.
+      portability_requested:
+        subject: A new access and portability request has been made.
+        content: A new access and portability request has been made.
+        link: You can <a href=%{link}>consult requests waiting for approval</a>
+    policy_manager_mailer:
+      portability_completed:
+        subject: Your access and portability request
+        requested_by_user: An access and portability request has been made on our site from your account.
+        requested_by_api: An access portability request has been made on one of our services from your account.
         content: Your data is ready and can be downloaded.
         download_link: Download my data
+        link_expiration: Please note that for security reasons, this link will expire in 48h.
+      portability_requested:
+        subject: An access and portability request has been made
+        content: An access and portability request has been made on our site from your account.
+        link: You can cancel or keep track of your request <a href=%{link}>here</a>.
+      portability_denied:
+        subject: Your access and portability request has been denied
+        content: You made a access and portability request on the %{date}, this request has been denied by an administrator.</br>If you have any questions, you can contact %{email}.
+        link: You can make a new request <a href=%{here}>ici</a>.
       anonymize_requested:
         subject: An anonymization request has been made
         content: An anonymization request has been made on our site from your account.

@@ -2,7 +2,7 @@ require "aasm"
 require 'zip'
 
 module PolicyManager
-  class PortabilityRequest < ApplicationRecord
+  class PortabilityRequest < PolicyManager::ApplicationRecord
     include AASM
 
     belongs_to :owner, polymorphic: true
@@ -10,6 +10,8 @@ module PolicyManager
     mount_uploader :attachement, AttachementUploader
 
     after_create :change_state_if_needed
+    after_create :notify_created
+
     validate :only_one_pending_request, on: :create
 
     def only_one_pending_request
@@ -32,7 +34,7 @@ module PolicyManager
         transitions from: :waiting_for_approval, :to => :canceled
       end
 
-      event :deny do
+      event :deny, after_commit: :notify_denied do
         transitions :from => :waiting_for_approval, :to => :denied
       end
   
@@ -103,8 +105,19 @@ module PolicyManager
       PortabilityRequest.encrypted_params(user_identifier)
     end
 
+    def notify_created
+      return unless self.requested_by.nil?
+      send_mail('portability_requested')
+      send_admin_mail('portability_requested')
+    end
+
+    def notify_denied
+      send_mail('portability_denied')
+    end
+
     def notify_user
-      PortabilityMailer.completed(self.id).deliver_now
+      send_mail('portability_completed')
+      perform_job_at 'delete_generated_json', 2.days.from_now
     end
 
     def generate_json

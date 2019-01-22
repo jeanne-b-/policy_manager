@@ -44,12 +44,12 @@ module PolicyManager
 
     def notify_created
       return unless self.requested_by.nil?
-      PolicyManagerMailer.anonymize_requested(self.id).deliver_now
-      PolicyManagerAdminMailer.anonymize_requested(self.id).deliver_now
+      send_mail('anonymize_requested')
+      send_admin_mail('anonymize_requested')
     end
 
     def notify_denied
-      PolicyManagerMailer.anonymize_denied(self.id).deliver_now
+      send_mail('anonymize_denied')
     end
 
     def create_on_other_services
