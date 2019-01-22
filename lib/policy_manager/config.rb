@@ -4,6 +4,13 @@ module PolicyManager
     mattr_accessor :current_user_method
     @@current_user_method = :current_user
 
+    # You can disable sidekiq but tasks in the future won't be executed
+    mattr_accessor :enable_sidekiq
+    @@enable_sidekiq = true
+
+    # the sidekiq queue used by the worker
+    mattr_accessor :sidekiq_queue
+
     # who can sign terms and ask for portability
     mattr_accessor :user_resource
 
