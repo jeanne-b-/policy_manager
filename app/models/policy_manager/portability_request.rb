@@ -131,12 +131,12 @@ module PolicyManager
       FileUtils.mkdir_p(file_path) unless File.exists?(file_path)
       file_name = File.join(file_path, "#{self.id.to_s}.json")
       file = File.new(file_name, 'w')
-
       user_data = Registery.new.data_dump_for(owner).to_json
 
       begin
         file.flush
         file.write(user_data)
+        file.close
         zipfile_name = file_path + "#{Devise.friendly_token}.zip"
         Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
           zipfile.add("#{self.id.to_s}.json", file)
