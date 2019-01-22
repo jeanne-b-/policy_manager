@@ -62,11 +62,7 @@ module PolicyManager
     end
 
     def call_service(service, identifier)
-      if defined?(Sidekiq)
-        perform_async({service: service, user: identifier})
-      else
-        async_call_service({'service' => service, 'user' => identifier})
-      end
+      perform_async({service: service, user: identifier})
     end
 
     def async_call_service(opts)
@@ -123,34 +119,6 @@ module PolicyManager
       self.owner.send(PolicyManager::Config.anonymize_method)
       self.done!
     end
-
-    # def generate_json
-    #   perform_async
-    # end
-
-    # def async_generate_json
-    #   self.run! unless self.running?
-    #   file_path = File.join(Rails.root, 'tmp', 'generate_data_dump')
-    #   FileUtils.mkdir_p(file_path) unless File.exists?(file_path)
-    #   file_name = File.join(file_path, "#{self.id.to_s}.json")
-    #   file = File.new(file_name, 'w')
-
-    #   user_data = Registery.new.data_dump_for(owner).to_json
-
-    #   begin
-    #     file.flush
-    #     file.write(user_data)
-    #     zipfile_name = file_path + "#{Devise.friendly_token}.zip"
-    #     Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-    #       zipfile.add("#{self.id.to_s}.json", file)
-    #     end
-    #     self.update(attachement: File.open(zipfile_name))
-    #   ensure
-    #     File.delete(file)
-    #     File.delete(zipfile_name)
-    #   end
-    #   self.done!
-    # end
 
   end
 end
