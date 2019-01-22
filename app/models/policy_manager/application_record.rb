@@ -20,7 +20,11 @@ module PolicyManager
     end
 
     def perform_async *args
-      perform_job_at "async_#{caller.first.split(" ").last[1..-2]}", Time.zone.now, *args
+      if PolicyManager::Config.enable_sidekiq
+        perform_job_at "async_#{caller_locations(1,1)[0].label}", Time.zone.now, *args
+      else
+        send("async_#{caller_locations(1,1)[0].label}", *(args.map { |arg| arg.is_a?(Hash) ? arg.with_indifferent_access : arg }))
+      end
     end
 
     def perform_job_at method, at, *args
