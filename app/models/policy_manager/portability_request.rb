@@ -59,11 +59,7 @@ module PolicyManager
     end
 
     def call_service(service)
-      if defined?(Sidekiq)
-        perform_async(service)
-      else
-        async_call_service(service)
-      end
+      perform_async(service)
     end
 
     def async_call_service(service_name)
@@ -121,11 +117,12 @@ module PolicyManager
     end
 
     def generate_json
-      if defined?(Sidekiq)
-        perform_async
-      else
-        async_generate_json
-      end
+      perform_async
+    end
+
+    def delete_generated_json
+      self.remove_attachement!
+      self.save
     end
 
     def async_generate_json
