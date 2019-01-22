@@ -15,7 +15,7 @@ module PolicyManager
     validate :only_one_pending_request, on: :create
 
     def only_one_pending_request
-      self.errors.add(:owner_id, :not_unique) if owner.portability_requests.where(state: [:waiting_for_approval, :pending, :running]).count > 0
+      self.errors.add(:owner_id, :not_unique) if owner.portability_requests.where(state: [:waiting_for_approval, :pending, :running], requested_by: self.requested_by).count > 0
     end
 
     aasm column: :state do
