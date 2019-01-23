@@ -50,6 +50,9 @@ module PolicyManager
     mattr_accessor :anonymize_method
     @@anonymize_method = :anonymize!
 
+    # a proc called on portability request approval
+    mattr_accessor :on_portability_approval
+
     # the registery represent which data will be be exported for a given user
     mattr_accessor :registery
 
@@ -81,6 +84,9 @@ module PolicyManager
         @@other_services = @@other_services.deep_symbolize_keys
       else
         @@other_services = {}
+      end
+      if @@on_portability_approval and !(@@on_portability_approval.is_a?(Proc) and @@on_portability_approval.arity == 1)
+        raise Exception.new('PolicyManager::Config.on_portability_approval should be a proc taking 1 parameter.')
       end
     end
 

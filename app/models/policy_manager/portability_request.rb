@@ -26,7 +26,7 @@ module PolicyManager
       state :denied
       state :canceled
   
-      event :approve, after_commit: :generate_json do
+      event :approve, after_commit: [:on_approval_callback, :generate_json] do
          transitions :from => :waiting_for_approval, :to => :pending
       end
 
@@ -42,7 +42,7 @@ module PolicyManager
         transitions :from => :pending, :to => :running
       end
       
-      event :done, after: :notify_user do
+      event :done, after_commit: :notify_completed do
         transitions :from => :running, :to => :done
       end
     end
@@ -111,10 +111,16 @@ module PolicyManager
       send_mail('portability_denied')
     end
 
-    def notify_user
+    def notify_completed
       send_mail('portability_completed')
       self.update(expire_at: 2.days.from_now)
       perform_job_at 'delete_generated_json', 2.days.from_now
+    end
+
+    def on_approval_callback
+      if PolicyManager::Config.on_portability_approval
+        PolicyManager::Config.on_portability_approval.call(self)
+      end
     end
 
     def generate_json
