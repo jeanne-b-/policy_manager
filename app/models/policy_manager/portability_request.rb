@@ -113,6 +113,7 @@ module PolicyManager
 
     def notify_user
       send_mail('portability_completed')
+      self.update(expire_at: 2.days.from_now)
       perform_job_at 'delete_generated_json', 2.days.from_now
     end
 
