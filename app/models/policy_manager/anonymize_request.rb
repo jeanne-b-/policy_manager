@@ -1,7 +1,7 @@
 require "aasm"
 
 module PolicyManager
-  class AnonymizeRequest < ApplicationRecord
+  class AnonymizeRequest < PolicyManager::ApplicationRecord
     include AASM
 
     belongs_to :owner, polymorphic: true
