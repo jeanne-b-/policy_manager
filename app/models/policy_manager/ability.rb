@@ -13,20 +13,28 @@ module PolicyManager
 
       return if user.nil?
 
-      # can [:new, :create], PortabilityRequest
-      # can [:cancel], PortabilityRequest do |pr|
-      #   pr.owner == user and pr.may_cancel?
-      # end
-
       can [:sign], Term do |t|
         t.published? and t.kind.require_signing? and !t.signed_by?(user)
       end
 
-      can [:create], AnonymizeRequest do |ar|
-        PolicyManager::Config.can_ask_anonymization.call(user)
+      if PolicyManager::Config.can_ask_portability.call(user)
+        can :new, PortabilityRequest
+        can :create, PortabilityRequest do |pr|
+          pr.owner == user
+        end
+        can :cancel, PortabilityRequest do |pr|
+          pr.owner == user and pr.may_cancel?
+        end
       end
-      can [:cancel], AnonymizeRequest do |ar|
-        ar.owner == user and ar.waiting_for_approval?
+
+      if PolicyManager::Config.can_ask_anonymization.call(user)
+        can :new, AnonymizeRequest
+        can :create, AnonymizeRequest do |ar|
+          ar.owner == user
+        end
+        can :cancel, AnonymizeRequest do |ar|
+          ar.owner == user and ar.waiting_for_approval?
+        end
       end
 
       return unless PolicyManager::Config.is_admin?(user)
@@ -39,11 +47,11 @@ module PolicyManager
         t.may_archive?
       end
 
-      can [:admin], AnonymizeRequest # [PortabilityRequest, AnonymizeRequest]
-      can [:approve], AnonymizeRequest do |object| # [PortabilityRequest, AnonymizeRequest] do |object|
+      can [:admin], [PortabilityRequest, AnonymizeRequest]
+      can [:approve], [PortabilityRequest, AnonymizeRequest] do |object|
         object.may_approve?
       end
-      can [:deny], AnonymizeRequest do |object| # [PortabilityRequest, AnonymizeRequest] do |object|
+      can [:deny], [PortabilityRequest, AnonymizeRequest] do |object|
         object.may_deny?
       end
     end
