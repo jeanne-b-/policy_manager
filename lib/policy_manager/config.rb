@@ -16,7 +16,7 @@ module PolicyManager
 
     # sets the locale in the controller and used to fetch the correct term translation 
     mattr_accessor :user_language
-    @@user_language = -> (user) { :en }
+    @@user_language = ->(_user) { :en }
 
     # used to find the correct user when a portability / anonymize request is asked via API
     mattr_accessor :finder
@@ -28,7 +28,7 @@ module PolicyManager
 
     # the method to check if a user can administrate
     mattr_accessor :is_admin_method
-    @@is_admin_method = -> (user) { user.is_admin? }
+    @@is_admin_method = ->(user) { user.is_admin? }
 
     # each email will be sent from this email address
     mattr_accessor :from_email
@@ -44,7 +44,11 @@ module PolicyManager
 
     # the method used to check if a user can ask for anonymization
     mattr_accessor :can_ask_anonymization
-    @@can_ask_anonymization = -> (user) { false }
+    @@can_ask_anonymization = ->(_user) { false }
+
+    # the method used to check if a user can ask for portability
+    mattr_accessor :can_ask_portability
+    @@can_ask_portability = ->(_user) { false }
 
     # the method called on user to anonymize
     mattr_accessor :anonymize_method
@@ -69,11 +73,11 @@ module PolicyManager
 
     # the default path to call on other services for portability
     mattr_accessor :portability_path
-    @@portability_path = "/legal/portability_requests/api_create"
+    @@portability_path = '/legal/portability_requests/api_create'
 
     # the default path to call on other services for anonymize
     mattr_accessor :anonymize_path
-    @@anonymize_path = "/legal/anonymize_requests/api_create"
+    @@anonymize_path = '/legal/anonymize_requests/api_create'
 
     def self.setup
       yield self
