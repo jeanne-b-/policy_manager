@@ -48,7 +48,7 @@ module PolicyManager
 
     def approve
       resource.approve!
-      redirect_to portability_requests_path
+      redirect_to admin_portability_requests_path
     end
 
     def cancel
@@ -58,7 +58,7 @@ module PolicyManager
 
     def deny
       resource.deny!
-      redirect_to portability_requests_path
+      redirect_to admin_portability_requests_path
     end
   end
 end
