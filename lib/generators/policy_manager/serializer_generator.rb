@@ -22,11 +22,11 @@ module PolicyManager
       end
 
       def has_manys
-        model.reflect_on_all_associations.select {|ass| ass.is_a? ActiveRecord::Reflection::HasManyReflection }.map &:name
+        model.reflect_on_all_associations.select { |ass| ass.macro == :has_many }.map(&:name)
       end
 
       def has_ones
-        model.reflect_on_all_associations.select {|ass| ass.is_a? ActiveRecord::Reflection::BelongsToReflection }.map &:name
+        model.reflect_on_all_associations.select { |ass| ass.macro == :belongs_to }.map(&:name)
       end
 
       def model
