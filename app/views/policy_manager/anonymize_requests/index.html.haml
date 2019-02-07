@@ -16,7 +16,7 @@
       - if can? :create, resource_class
         = link_to t('.new'), new_anonymize_request_path, class: 'btn btn-primary'
       - @anonymize_requests.each do |p|
-        %li.list-group-item.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
+        %li.list-group-item.d-flex.clearfix{class: p.state.in?(%w[denied canceled]) ? 'text-muted' : ''}
           .col-sm-8
             %h4
               = resource_class.model_name.human

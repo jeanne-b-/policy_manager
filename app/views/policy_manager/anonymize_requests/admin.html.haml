@@ -4,7 +4,7 @@
     waiting for approval
   %ul.list-group
     - @anonymize_requests.each do |p|
-      %li.list-group-item.clearfix
+      %li.list-group-item.d-flex.clearfix
         - nb_days = ((Time.zone.now - p.created_at) / 1.day).round
         - if nb_days < 20
           - classes = 'text-success'

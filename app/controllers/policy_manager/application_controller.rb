@@ -1,12 +1,23 @@
 module PolicyManager
   class ApplicationController < ActionController::Base
     layout 'policy_manager'
-    skip_before_action :authenticate_user!, raise: false
-    skip_before_action :authenticate_any!, raise: false
+    if respond_to?(:before_action)
+      skip_before_action :authenticate_user!, raise: false
+      skip_before_action :authenticate_any!, raise: false
+    else
+      skip_before_filter :authenticate_user!, raise: false
+      skip_before_filter :authenticate_any!, raise: false
+    end
 
-    before_filter :set_current_user
-    before_filter :merge_abilities
-    before_filter :set_locale
+    if respond_to?(:before_filter)
+      before_filter :set_current_user
+      before_filter :merge_abilities
+      before_filter :set_locale
+    else
+      before_action :set_current_user
+      before_action :merge_abilities
+      before_action :set_locale
+    end
 
     private
 
