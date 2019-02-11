@@ -31,7 +31,7 @@ en:
       portability_denied:
         subject: Your access and portability request has been denied
         content: You made a access and portability request on the %{date}, this request has been denied by an administrator.</br>If you have any questions, you can contact %{email}.
-        link: You can make a new request <a href=%{here}>ici</a>.
+        link: You can make a new request <a href=%{link}>ici</a>.
       anonymize_requested:
         subject: An anonymization request has been made
         content: An anonymization request has been made on our site from your account.
@@ -39,4 +39,4 @@ en:
       anonymize_denied:
         subject: Your anonymization request has been denied
         content: You made a anonymization request on the %{date}, this request has been denied by an administrator.</br>If you have any questions, you can contact %{email}.
-        link: You can make a new request <a href=%{here}>ici</a>.
+        link: You can make a new request <a href=%{link}>ici</a>.
