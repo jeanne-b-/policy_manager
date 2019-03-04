@@ -71,10 +71,10 @@ module PolicyManager
       end
 
       case response.code.to_i
-        when 200..299
+      when 200..299
         return response
       when 404
-        raise "service_name '#{service_name}' was unable to find given user"
+        return response
       when 401
         raise "service_name '#{service_name}' returned unauthorized"
       when 422
