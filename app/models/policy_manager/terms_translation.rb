@@ -1,6 +1,6 @@
 module PolicyManager
   class TermsTranslation < ApplicationRecord
-    belongs_to :term
+    belongs_to :term, inverse_of: :terms_translations, touch: true
 
     validates_presence_of :title
     validates_presence_of :content
