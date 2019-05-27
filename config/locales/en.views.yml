@@ -10,9 +10,10 @@ en:
   archive: archive
   policy_manager_sign: sign
   edit: edit
-  release_feature: "This feature will be released soon."
-  no_terms: "No terms or conditions have been published yet."
-  intra_anonymize: "You cannot ask for an account anonymization from this platform."
+  release_feature: "You must ask for an account data portability on the intranet"
+  must_log_in: "You must log in to access this feature"
+  no_terms: "No terms or conditions have been published yet"
+  intra_anonymize: "You cannot ask for an account anonymization on the intranet"
   last_updated_at: 'Last updated:'
   policy_manager:
     terms:

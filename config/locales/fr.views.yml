@@ -11,9 +11,10 @@ fr:
   archive: archiver
   policy_manager_sign: signer
   edit: modifier
-  release_feature: "Cette fonctionnalité sera bientôt en ligne"
+  release_feature: "Vous devez effectuer une demande de portabilité depuis l'intranet"
+  must_log_in: "Vous devez vous connecter pour accéder à cette fonctionnalité"
   no_terms: "Aucune conditions ou politiques n'ont été publiées pour l'instant"
-  intra_anonymize: "Vous ne pouvez pas effectuer une demande d'anonymisation de compte depuis cette plateforme"
+  intra_anonymize: "Vous devez effectuer une demande d'anonymisation de compte depuis l'intranet"
   policy_manager:
     terms:
       terms_translation_fields:
