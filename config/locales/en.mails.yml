@@ -2,7 +2,6 @@ en:
   layouts:
     policy_manager_admin_mailer:
       hello: Hello
-      contact: ''
     policy_manager_mailer:
       hello: Hello, %{user_name}
       contact: If you have any questions concerning the way we treat or handle your data, you can consult <a href=%{link}>our legal documents</a> or contact %{email}.

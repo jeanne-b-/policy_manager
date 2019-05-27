@@ -2,7 +2,6 @@ fr:
   layouts:
     policy_manager_admin_mailer:
       hello: Bonjour,
-      contact: ''
     policy_manager_mailer:
       hello: Bonjour %{user_name},
       contact: Pour toute question concernant la façon dont nous traitons ou gérons vos données personnelles, vous pouvez consulter <a href=%{link}>nos documents légaux</a> ou contacter %{email}.

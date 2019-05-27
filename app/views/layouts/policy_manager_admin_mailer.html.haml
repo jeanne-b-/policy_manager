@@ -17,11 +17,6 @@
                 = yield
               %td{width: "0"}
             %tr
-              %td{width: "15"}
-              %td{style: "text-align: left; font-family: 'Futura', sans-serif; font-size: 14px; color: #ccc; padding: 30px 0;", width: "500"}
-                = t('.contact', link: policy_manager.terms_url, email: PolicyManager::Config.dpo_email).html_safe
-              %td{width: "15"}
-            %tr
               %td{height: "15", width: "20"}
               %td{width: "500", style: "text-align: left; font-family: 'Futura', sans-serif; font-size: 14px; font-weight: bold;"}
                 = link_to ActionMailer::Base.default_url_options[:host], policy_manager_url
