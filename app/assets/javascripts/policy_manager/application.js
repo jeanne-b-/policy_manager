@@ -14,6 +14,13 @@
 //= require cocoon
 //= require_tree .
 
+/*
+
+      DANS CE FICHIER NON COMPILE AVEC BABEL IL EST OBLIGATOIRE DECRIRE DU JAVASCRIPT COMPATIBLE AVEC IE (10,11)
+
+*/
+
+
 var myMarked = marked;
 myMarked.setOptions({
   renderer: new myMarked.Renderer(),
@@ -26,31 +33,26 @@ myMarked.setOptions({
 });
 
 function init() {
-  Array.from($("textarea.marked")).forEach(function(input) {
-    $(input).on('keyup', function() {
-      var scroll_height = this.scrollHeight;
-    
-      $(this).css('height', scroll_height + 'px');
+  $("textarea.marked").each(function() {
+    $(this).on('keyup', function() {
+      $(this).css('height', this.scrollHeight + 'px');
     });
-  });
+  })
 
   // marked content
-  Array.from(document.getElementsByClassName('marked-content')).forEach(function(elem) {
-      elem.innerHTML = myMarked(elem.innerHTML);
+  $('.marked-content').each(function() {
+    this.innerHTML = myMarked(this.innerHTML);
   });
 
   // marked inputs
-  Array.from(document.getElementsByClassName('row marked')).forEach(function(elem) {
-    var input;
-    var e;
-    input = elem.getElementsByTagName('textarea')[0];
-    e = input.addEventListener('keyup', function(input) {
-      value = elem.getElementsByTagName('textarea')[0].value;
-      elem.getElementsByClassName('markdown-preview')[0].innerHTML = myMarked(value);
+  $('.row .marked').each(function() {
+    var input = this.find('textarea').first();
+    input.addEventListener('keyup', function() {
+      var value = this.find('textarea').first().value;
+      this.find('.markdown-preview').first().innerHTML = myMarked(value);
     });
     input.dispatchEvent(new Event('keyup'));
   });
-
 }
 
 
