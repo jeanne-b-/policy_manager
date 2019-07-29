@@ -34,24 +34,29 @@ myMarked.setOptions({
 
 function init() {
   $("textarea.marked").each(function() {
-    $(this).on('keyup', function() {
+    $(this).keyup(function() {
       $(this).css('height', this.scrollHeight + 'px');
     });
   })
 
   // marked content
   $('.marked-content').each(function() {
-    this.innerHTML = myMarked(this.innerHTML);
+    $(this).innerHTML = myMarked(this.innerHTML);
   });
 
   // marked inputs
-  $('.row .marked').each(function() {
-    var input = this.find('textarea').first();
-    input.addEventListener('keyup', function() {
-      var value = this.find('textarea').first().value;
-      this.find('.markdown-preview').first().innerHTML = myMarked(value);
+  $('.row.marked').each(function() {
+    const self = $(this);
+    var input = self.find('textarea').first();
+    if (!input) return;
+    input.keyup(function() {
+      var value = input.val();
+      if (value) {
+        var preview = self.find('.markdown-preview');
+        preview.html(myMarked(value));
+      }
     });
-    input.dispatchEvent(new Event('keyup'));
+    input.keyup();
   });
 }
 
