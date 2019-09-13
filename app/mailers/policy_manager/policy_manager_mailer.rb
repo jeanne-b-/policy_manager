@@ -3,12 +3,9 @@ module PolicyManager
     include Rails.application.routes.url_helpers
 
     def send_mail opts
-      return if !Config.mailjet
-
-      delivery_method_options ||= {}
-
-      if Rails.env.production?
-        delivery_method_options.merge({ version: 'v3.1', api_key: 'ff30bb3f9ba9ad8f099696fa66afa074', secret_key: 'cc3f8c292c848d55d6137375dfa43652' })
+      if Rails.env.production? and Config.mailjet and Config.mailjet_api_key
+        delivery_method_options ||= {}
+        delivery_method_options.merge({ version: 'v3.1', api_key: Config.mailjet_api_key, secret_key: Config.mailjet_api_secret })
       end
 
       mail(opts)

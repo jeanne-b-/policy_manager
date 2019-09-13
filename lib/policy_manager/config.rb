@@ -42,6 +42,13 @@ module PolicyManager
     mattr_accessor :mailjet
     @@mailjet = false
 
+    # default config for api key and secret for mailjet
+    mattr_accessor :mailjet_api_key
+    mattr_accessor :mailjet_api_secret
+
+    @@mailjet_api_key = ''
+    @@mailjet_api_secret = ''
+
     # used to address the user in emails
     mattr_accessor :user_name_method
     @@user_name_method = :login
