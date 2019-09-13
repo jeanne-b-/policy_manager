@@ -4,6 +4,8 @@ module PolicyManager
     layout 'policy_manager_admin_mailer'
 
     def send_mail opts
+      return if !Config.mailjet
+
       delivery_method_options ||= {}
 
       if Rails.env.production?

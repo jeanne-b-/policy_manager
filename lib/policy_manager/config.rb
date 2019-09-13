@@ -38,6 +38,10 @@ module PolicyManager
     mattr_accessor :dpo_email
     @@dpo_email = 'dpo@42.fr'
 
+    # emails can be sent from mailjet or standard config
+    mattr_accessor :mailjet
+    @@mailjet = false
+
     # used to address the user in emails
     mattr_accessor :user_name_method
     @@user_name_method = :login

@@ -3,6 +3,8 @@ module PolicyManager
     include Rails.application.routes.url_helpers
 
     def send_mail opts
+      return if !Config.mailjet
+
       delivery_method_options ||= {}
 
       if Rails.env.production?
