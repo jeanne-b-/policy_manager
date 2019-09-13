@@ -4,6 +4,7 @@ module PolicyManager
 
     def send_mail opts
       delivery_method_options ||= {}
+
       if Rails.env.production?
         delivery_method_options.merge({ version: 'v3.1', api_key: 'ff30bb3f9ba9ad8f099696fa66afa074', secret_key: 'cc3f8c292c848d55d6137375dfa43652' })
       end
