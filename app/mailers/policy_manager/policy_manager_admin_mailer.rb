@@ -3,6 +3,13 @@ module PolicyManager
     include Rails.application.routes.url_helpers
     layout 'policy_manager_admin_mailer'
 
+    def send_mail opts
+      delivery_method_options ||= {}
+      if Rails.env.production?
+        delivery_method_options.merge({ version: 'v3.1', api_key: 'ff30bb3f9ba9ad8f099696fa66afa074', secret_key: 'cc3f8c292c848d55d6137375dfa43652' })
+      end
+    end
+
     def portability_requested(portability_request_id)
       @portability_request = PortabilityRequest.find(portability_request_id)
       @user = @portability_request.owner
@@ -13,7 +20,7 @@ module PolicyManager
       
       set_mail_lang
 
-      mail(opts)
+      send_mail(opts)
     end
 
     def anonymize_requested(anonymize_request_id)
@@ -26,7 +33,7 @@ module PolicyManager
       
       set_mail_lang
 
-      mail(opts)
+      send_mail(opts)
     end
 
     private
