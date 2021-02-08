@@ -7,7 +7,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'haml-rails', '0.9.0'
 gem 'rails', '5.0.0'
 gem 'inherited_resources', github: 'lambda2/inherited_resources'
-gem 'carrierwave', '0.10.0'
+gem 'carrierwave', '2.1.1'
 gem 'cocoon'
 gem 'aasm'
 gem 'rubyzip'
