@@ -10,7 +10,7 @@ module PolicyManager
     has_many :users_terms
     has_many :terms_translations, inverse_of: :term
 
-    has_one :terms_translation, -> () { order(Arel.sql("locale = '#{I18n.locale}' DESC, locale = 'en' DESC")) }
+    has_one :terms_translation, -> () { order(Arel.sql(ActiveRecord.sanitize_sql(["locale = ? DESC, locale = ? DESC", I18n.locale, 'en']))) }
 
     accepts_nested_attributes_for :terms_translations, reject_if: :all_blank, allow_destroy: true
 
