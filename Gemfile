@@ -13,6 +13,7 @@ gem 'aasm'
 gem 'rubyzip'
 gem 'zip-zip'
 gem 'httparty'
+gem 'mailjet'
 
 
 
